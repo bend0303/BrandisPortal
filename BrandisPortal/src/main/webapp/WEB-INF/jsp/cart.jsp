@@ -34,7 +34,6 @@
 						<td width="25%"><c:out value="${p.amount}" /></td>
 						<td width="25%"><c:out value="${p.price}" /></td>
 						<td><input type="submit" style="width: 30px; height: 30px;" alt="Delete product" name="singleDelete" value="${p.product.productId}"></td>
-						<!-- <td width="10%"><input type="image" src="/BrandisPortal/src/main/webapp/images/garbage-bin-icon.jpg" style="width: 30px; height: 30px;" alt="Delete Product" name="singleDelete" value="${p.product.productId}"> </td> -->
 			</tr>
 					</tr>
 				</c:forEach>
@@ -43,5 +42,6 @@
 		<br><br>
 		<h3>Total Balance : </h3><c:out value="${cart.balance}" />
 	</div>
+	<img alt="" src="http://localhost:8080/images/garbage-bin-icon.jpg"/>
 </body>
 </html>

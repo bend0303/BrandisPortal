@@ -36,7 +36,8 @@ public class CartController {
 		String singleDelete = req.getParameter("singleDelete");
 		if (singleDelete != null && !singleDelete.isEmpty()) {
 			int index = cart.getIndexByID(Integer.parseInt(singleDelete));
-			cart.setBalance(cart.getBalance() - cart.getItems().get(index).getPrice());
+			cart.setBalance(cart.getBalance()
+					- cart.getItems().get(index).getPrice());
 			cart.getItems().remove(index);
 		}
 		return "redirect:/cart/showcart";
@@ -66,7 +67,12 @@ public class CartController {
 			user.getCart().addItem(item);
 		} else {
 			int pAmount = cart.getItems().get(index).getAmount();
-			cart.getItems().get(index).setAmount(pAmount + amount);
+			CartItem item = cart.getItems().get(index);
+			item.setAmount(pAmount + amount);
+			item.setPrice(item.getProduct().getProductPrice()
+					* item.getAmount());
+			cart.setBalance(cart.getBalance()
+					+ item.getProduct().getProductPrice() * amount);
 		}
 		req.getSession().setAttribute("userPersist", user);
 		return "redirect:/products/products";
