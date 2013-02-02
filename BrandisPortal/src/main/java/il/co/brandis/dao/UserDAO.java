@@ -40,7 +40,7 @@ public class UserDAO implements IUserDAO {
 		logger.debug("User has been deleted");
 
 	}
-//te
+//test
 	public User getUser(int uId) {
 		User user = (User) sessionFactory.getCurrentSession().get(User.class,
 				uId);
