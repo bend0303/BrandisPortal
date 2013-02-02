@@ -47,7 +47,7 @@ public class UserDAO implements IUserDAO {
 		logger.debug("User found");
 		return user;
 	}
-
+//test1
 	public List<User> getUsers() {
 
 		@SuppressWarnings("unchecked")
