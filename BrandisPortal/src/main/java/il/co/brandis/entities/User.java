@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 /**
- * User domain
+ * User domain test
  */
 @Entity
 @Table(name = "USERS")
