@@ -15,8 +15,8 @@ import javax.persistence.Transient;
 public class User {
 
 	/**
-	 * The user ID
-	 */
+	 * The user ID is nice
+	 */ 
 	@Id
 	@GeneratedValue
 	@Column(name = "user_id")
