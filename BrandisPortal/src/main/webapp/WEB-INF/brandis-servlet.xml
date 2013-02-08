@@ -8,8 +8,8 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/mvc
          http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-
-	<context:component-scan base-package="il.co.brandis" />
+        
+    <context:component-scan base-package="il.co.brandis" />
 	<mvc:annotation-driven />
 	<tx:annotation-driven />
 	<bean

@@ -13,11 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.ui.ModelMap;
 
-@SessionAttributes({ "userPersist", "newProduct" })
+@SessionAttributes({ "userPersist" })
 @Controller
 public class ProductController {
 	@Autowired
@@ -25,17 +26,19 @@ public class ProductController {
 
 	protected static Logger logger = Logger.getLogger("Controller");
 
+	
+	@RequestMapping(value = "/products/addproductform")
+	public String registerForm(ModelMap modelMap) {
+		modelMap.addAttribute("newProduct", new Product());
+		return "addproduct";
+	}
+	
 	@RequestMapping(value = "/products/addproduct")
-	public String addProduct(HttpServletRequest req, ModelMap modelMap) {
-		Product product = (Product) modelMap.get("newProduct");
-		product.setProductName(req.getParameter("productName"));
-		product.setProductDesc(req.getParameter("productDesc"));
-		product.setProductPrice(Double.parseDouble(req
-				.getParameter("productPrice")));
+	public String addProduct(@ModelAttribute(value="newProduct") Product product,HttpServletRequest req, ModelMap modelMap) {
 		productService.addProduct(product);
 		modelMap.remove("newProduct");
 		logger.info("Product: "+product.getProductName()+" was successfully added to the shop");
-		return "products";
+		return "redirect:/products/addproductform";
 	}
 
 	@RequestMapping(value = "/products/products")

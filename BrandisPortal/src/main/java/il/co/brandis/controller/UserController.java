@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.ui.ModelMap;
 
 @RequestMapping("/user")
-@SessionAttributes({ "userPersist", "temp" })
+@SessionAttributes({ "userPersist" })
 @Controller
 public class UserController {
 	@Autowired
@@ -67,7 +67,7 @@ public class UserController {
 	@RequestMapping(value = "/registration")
 	public String registerUser(@ModelAttribute(value="newUser") User user,HttpServletRequest req, ModelMap modelMap) {
 		userService.addUser(user);
-		modelMap.remove("temp");
+		modelMap.remove("newUser");
 		return "login";
 	}
 	
