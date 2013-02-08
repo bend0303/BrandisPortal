@@ -1,6 +1,5 @@
 package il.co.brandis.controller;
 
-import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import il.co.brandis.controller.ProductController;
 import il.co.brandis.entities.Cart;
 import il.co.brandis.entities.CartItem;
 import il.co.brandis.entities.Product;
