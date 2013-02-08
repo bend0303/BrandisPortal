@@ -16,6 +16,7 @@ public class User {
 
 	/**
 	 * The user ID is very nice test
+	 * The user ID is not very nice 
 	 */ 
 	@Id
 	@GeneratedValue
