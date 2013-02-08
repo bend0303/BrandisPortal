@@ -72,7 +72,6 @@ public class CartController {
 			cart.setBalance(cart.getBalance()
 					+ item.getProduct().getProductPrice() * amount);
 		}
-		req.getSession().setAttribute("userPersist", user);
 		return "redirect:/products/products";
 	}
 
