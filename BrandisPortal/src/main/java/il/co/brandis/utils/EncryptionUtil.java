@@ -3,7 +3,7 @@ package il.co.brandis.utils;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 
-public class Encryption {
+public class EncryptionUtil {
 	public static String encrypt(String source) {
 		String md5 = null;
 		try {

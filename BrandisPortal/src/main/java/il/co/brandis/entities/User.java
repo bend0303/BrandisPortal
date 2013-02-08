@@ -1,6 +1,6 @@
 package il.co.brandis.entities;
 
-import il.co.brandis.utils.Encryption;
+import il.co.brandis.utils.EncryptionUtil;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -103,7 +103,7 @@ public class User {
 	}
 
 	public void setPassword(String password) {
-		this.password = Encryption.encrypt(password);
+		this.password = EncryptionUtil.encrypt(password);
 	}
 
 }

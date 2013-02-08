@@ -24,7 +24,7 @@ public class ProductController {
 	@Autowired
 	private IProductManagerService productService;
 
-	protected static Logger logger = Logger.getLogger("Controller");
+	protected static Logger logger = Logger.getLogger(ProductController.class.getName());
 
 	
 	@RequestMapping(value = "/products/addproductform")
@@ -43,8 +43,10 @@ public class ProductController {
 
 	@RequestMapping(value = "/products/products")
 	public String showProducts(HttpServletRequest req, ModelMap modelMap) {
+		String METHOD = "showProducts()";
 		User user = (User) req.getSession().getAttribute("userPersist");
 		if (user == null) {
+			logger.warn(METHOD + "Anonymouse access attempt");
 			return "login";
 		}
 		List<Product> products = productService.getProducts();

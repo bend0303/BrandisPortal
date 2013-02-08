@@ -2,7 +2,7 @@ package il.co.brandis.controller;
 
 import il.co.brandis.entities.User;
 import il.co.brandis.services.IUserManagerService;
-import il.co.brandis.utils.Encryption;
+import il.co.brandis.utils.EncryptionUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -28,7 +28,7 @@ public class UserController {
 	@Autowired
 	private IUserManagerService userService;
 
-	protected static Logger logger = Logger.getLogger("Controller");
+	protected static Logger logger = Logger.getLogger(UserController.class.getName());
 
 	@RequestMapping("/loginform")
 	public String ShowLogin() {
@@ -41,11 +41,13 @@ public class UserController {
 		String username = req.getParameter("user");
 		String password = req.getParameter("pass");
 		List<User> loginlist = userService.validateLogin(username,
-				Encryption.encrypt(password));
+				EncryptionUtil.encrypt(password));
 		if (loginlist.size() == 1) {
 			modelMap.addAttribute("userPersist", loginlist.get(0));
+			logger.info("Loggin authentication succeed: " + username);
 			return "loginsuccess";
 		} else {
+			logger.warn("Loggin authentication failed: " + username);
 			return "login";
 		}
 
@@ -67,6 +69,7 @@ public class UserController {
 	@RequestMapping(value = "/registration")
 	public String registerUser(@ModelAttribute(value="newUser") User user,HttpServletRequest req, ModelMap modelMap) {
 		userService.addUser(user);
+		logger.info("Loggin register succeed: " + user.getUsername());
 		modelMap.remove("newUser");
 		return "login";
 	}
@@ -86,7 +89,7 @@ public class UserController {
 	public @ResponseBody User get(@PathVariable int id) {
 		User user = userService.getUserByID(id);
 		if (user == null) {
-			//error
+			logger.warn("Retrieve user failed for id #"+ id);
 		}
 		return user;
 	}
