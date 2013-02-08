@@ -12,10 +12,15 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.ui.ModelMap;
 
+@RequestMapping("/user")
 @SessionAttributes({ "userPersist", "temp" })
 @Controller
 public class UserController {
@@ -68,5 +73,25 @@ public class UserController {
 		userService.addUser(user);
 		modelMap.remove("temp");
 		return "login";
+	}
+	
+	@RequestMapping(value="/availability", method=RequestMethod.GET)
+	public @ResponseBody String getAvailability(@RequestParam String username) {
+		List<User> users = userService.getUsers();
+		for (User u : users) {
+			if (u.getUsername().equals(username)) {
+				return "false";
+			}
+		}
+		return "true";
+	}
+	
+	@RequestMapping(value="{id}", method=RequestMethod.GET)
+	public @ResponseBody User get(@PathVariable int id) {
+		User user = userService.getUserByID(id);
+		if (user == null) {
+			//error
+		}
+		return user;
 	}
 }

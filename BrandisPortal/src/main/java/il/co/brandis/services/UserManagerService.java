@@ -24,4 +24,14 @@ public class UserManagerService implements IUserManagerService {
 	public void addUser(User user) {
 		UsersDAO.addUser(user);
 	}
+
+	@Override
+	public List<User> getUsers() {
+		return UsersDAO.getUsers();
+	}
+
+	@Override
+	public User getUserByID(int id) {
+		return UsersDAO.getUser(id);
+	}
 }

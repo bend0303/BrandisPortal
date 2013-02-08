@@ -8,5 +8,7 @@ public interface IUserManagerService {
 	public void addUser(User user);
 
 	public List<User> validateLogin(String user, String password);
+	public List<User> getUsers();
+	public User getUserByID(int id);
 
 }
