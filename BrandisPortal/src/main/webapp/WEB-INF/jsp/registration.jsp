@@ -21,7 +21,7 @@
 </head>
 <body>
 
-	<form:form modelAttribute="temp" method="post"
+	<form:form modelAttribute="newUser" method="post"
 		action="/user/registration">
 		<table>
 			<tr>
