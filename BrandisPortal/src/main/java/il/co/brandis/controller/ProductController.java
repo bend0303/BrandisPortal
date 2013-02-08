@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.ui.ModelMap;
 
-@SessionAttributes({ "userPersist", "tempProduct" })
+@SessionAttributes({ "userPersist", "newProduct" })
 @Controller
 public class ProductController {
 	@Autowired
@@ -25,23 +25,16 @@ public class ProductController {
 
 	protected static Logger logger = Logger.getLogger("Controller");
 
-	@RequestMapping(value = "/products/addproductform")
-	public String productsForm(HttpServletRequest req, ModelMap modelMap) {
-		modelMap.addAttribute("tempProduct", new Product());
-
-		return "addproduct";
-	}
-
 	@RequestMapping(value = "/products/addproduct")
 	public String addProduct(HttpServletRequest req, ModelMap modelMap) {
-		req.getSession().getAttribute("userPersist");
-		Product product = (Product) modelMap.get("tempProduct");
+		Product product = (Product) modelMap.get("newProduct");
 		product.setProductName(req.getParameter("productName"));
 		product.setProductDesc(req.getParameter("productDesc"));
 		product.setProductPrice(Double.parseDouble(req
 				.getParameter("productPrice")));
 		productService.addProduct(product);
-		modelMap.remove("temp");
+		modelMap.remove("newProduct");
+		logger.info("Product: "+product.getProductName()+" was successfully added to the shop");
 		return "products";
 	}
 

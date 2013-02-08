@@ -15,7 +15,7 @@
 </head>
 <body>
 
-	<form:form modelAttribute="tempProduct" method="post"
+	<form:form modelAttribute="newProduct" method="post"
 		action="/products/addproduct">
 		<table>
 			<tr>

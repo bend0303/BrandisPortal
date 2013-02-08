@@ -10,7 +10,8 @@
          http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 	<context:component-scan base-package="il.co.brandis" />
-
+	<mvc:annotation-driven />
+	<tx:annotation-driven />
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />
@@ -51,8 +52,6 @@
 	<bean id="userService" class="il.co.brandis.services.UserManagerService">
 	</bean>
 
-	<mvc:annotation-driven />
-	<tx:annotation-driven />
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
