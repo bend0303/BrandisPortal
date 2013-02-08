@@ -15,7 +15,7 @@ import javax.persistence.Transient;
 public class User {
 
 	/**
-	 * The user ID is very nice 
+	 * The user ID is very nice test
 	 */ 
 	@Id
 	@GeneratedValue
