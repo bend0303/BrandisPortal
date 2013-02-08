@@ -6,6 +6,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script type="text/javascript"	src="<c:url value="/resources/javascript/jquery-1.9.1.min.js" /> "></script>
+<script type="text/javascript"	src="<c:url value="/resources/javascript/jquery.json-2.4.min.js" /> "></script>
+<script type="text/javascript" src="<c:url value="/resources/javascript/userJS.js" /> "></script>
 <link rel="stylesheet" href="<c:url value="/resources/popup.css" />"
 	type="text/css" media="screen, projection">
 <style type="text/css">
@@ -14,10 +17,7 @@
 }
 </style>
 <title>Registration Page</title>
-<script type="text/javascript"
-	src="<c:url value="/resources/jquery-1.4.min.js" /> "></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/json.min.js" /> "></script>
+
 </head>
 <body>
 
@@ -53,30 +53,5 @@
 		<a href="/user/loginform">Login</a>
 	</h3>
 </body>
-<script type="text/javascript">
-	$(document).ready(function() {
-		// check name availability on focus lost
-		$('#username').blur(function() {
-			if ($('#username').val()) {
-				checkAvailability();
-			}
-		});
-	});
 
-	function checkAvailability() {
-		$.getJSON("/user/availability", {
-			username : $('#username').val()
-		}, function(available) {
-			if (available == false) {
-				alert("Username already exists aaaaa");
-				$('#submit').attr("disabled", true);
-				
-			} else {
-				$('#submit').attr("disabled", false);
-			}
-
-		});
-	}
-
-</script>
 </html>

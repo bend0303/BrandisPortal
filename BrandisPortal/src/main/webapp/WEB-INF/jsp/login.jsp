@@ -18,7 +18,7 @@
 <body>
 
 	<h3>USER LOGIN</h3>
-	<form method="post" action="/login">
+	<form method="post" action="/user/login">
 		<table align="left">
 			<tr>
 				<td>User Name</td>

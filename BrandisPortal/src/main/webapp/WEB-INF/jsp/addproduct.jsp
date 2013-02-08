@@ -35,7 +35,7 @@
 		</table>
 	</form:form>
 	<h3>
-		<a href="/logout">Logout</a>
+		<a href="/user/logout">Logout</a>
 	</h3>
 </body>
 </html>

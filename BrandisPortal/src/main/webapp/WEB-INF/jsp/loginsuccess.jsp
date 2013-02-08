@@ -14,7 +14,7 @@
 	</h1>
 	<br>
 	<h3>
-		<a href="/logout">Logout</a>
+		<a href="/user/logout">Logout</a>
 	</h3><br>
 	<h3>
 		<a href="/products/addproductform">AddProduct</a>
