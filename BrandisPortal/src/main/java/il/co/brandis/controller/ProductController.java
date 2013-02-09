@@ -55,6 +55,6 @@ public class ProductController {
 		modelMap.addAttribute("cartItems", cart);
 		List<CartItem> cartItems = cart.getItems();
 		modelMap.addAttribute("cartItems", cartItems);
-		return "products";
+		return "productsPage";
 	}
 }

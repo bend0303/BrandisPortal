@@ -1,0 +1,43 @@
+.productDesc {
+	color: #575757;
+}
+
+.productTitle {
+	font-weight: bold;
+	color: #383838;
+	letter-spacing: 0pt;
+	word-spacing: 0pt;
+	font-size: 18px;
+	text-align: left;
+	font-family: arial, helvetica, sans-serif;
+	line-height: 0;
+}
+
+li {
+	padding: 10px; list-style-type : none;
+	border-bottom: 1px solid silver;
+	list-style-type: none;
+
+}
+
+#productList {
+	margin: auto;
+	list-style-type: none;
+	padding: 0px;
+	display: block;
+	border: 1px solid silver;
+		width: 500px;
+}
+
+.price {
+	color: #359100;
+	font-size: 13px;
+	text-align: left;
+	font-family: arial, helvetica, sans-serif;
+}
+
+.spinner {
+	width: 20px;
+	height: 15px;
+	font-size: 12px;
+}
