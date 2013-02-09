@@ -1,6 +1,9 @@
 .productDesc {
 	color: #575757;
 }
+.shoppingCartIMG {
+	vertical-align: bottom; width: 22px; height: 22px; padding-right: 1px;
+}
 
 .productTitle {
 	font-weight: bold;
