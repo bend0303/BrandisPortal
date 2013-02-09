@@ -11,7 +11,7 @@
 	</appender>
 
 	<appender name="util" class="org.apache.log4j.FileAppender">
-        <param name="File" value="D:/mylog.log" />
+        <param name="File" value="C:/Users/Or Guz/Documents/Programming/Java/Brandis/Logs/log.log" />
         <param name="Append" value="true" />
         <layout class="org.apache.log4j.PatternLayout">
           <param name="ConversionPattern" value="%d, [%5p] [%t] [%c] - %m%n"/>

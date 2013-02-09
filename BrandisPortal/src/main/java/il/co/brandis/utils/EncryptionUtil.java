@@ -6,6 +6,9 @@ import java.security.MessageDigest;
 public class EncryptionUtil {
 	public static String encrypt(String source) {
 		String md5 = null;
+		if (source.isEmpty()){
+			return source;
+		}
 		try {
 			MessageDigest mdEnc = MessageDigest.getInstance("MD5"); // Encryption
 																	// algorithm

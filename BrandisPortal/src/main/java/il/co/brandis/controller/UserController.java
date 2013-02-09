@@ -2,16 +2,23 @@ package il.co.brandis.controller;
 
 import il.co.brandis.entities.User;
 import il.co.brandis.services.IUserManagerService;
+import il.co.brandis.services.UserManagerService;
 import il.co.brandis.utils.EncryptionUtil;
+import il.co.brandis.validators.UserValidator;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,8 +34,16 @@ import org.springframework.ui.ModelMap;
 public class UserController {
 	@Autowired
 	private IUserManagerService userService;
-
-	protected static Logger logger = Logger.getLogger(UserController.class.getName());
+//	@Autowired
+//	private UserValidator userValidator;
+//
+//	 @InitBinder
+//	    protected void initBinder(WebDataBinder binder) {
+//	        binder.setValidator(new UserValidator());
+//	    }
+	 
+	protected static Logger logger = Logger.getLogger(UserController.class
+			.getName());
 
 	@RequestMapping("/loginform")
 	public String ShowLogin() {
@@ -67,15 +82,21 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/registration")
-	public String registerUser(@ModelAttribute(value="newUser") User user,HttpServletRequest req, ModelMap modelMap) {
-		userService.addUser(user);
-		logger.info("Loggin register succeed: " + user.getUsername());
+	public String registerUser(@Valid @ModelAttribute(value = "newUser") User user,
+			BindingResult result, ModelMap modelMap) {
+		if (result.hasErrors()) {
+			return "registration";
+		} else {
+			userService.addUser(user);
+			logger.info("Loggin register succeed: " + user.getUsername());
+		}
 		modelMap.remove("newUser");
 		return "login";
 	}
-	
-	@RequestMapping(value="/availability", method=RequestMethod.GET)
-	public @ResponseBody String getAvailability(@RequestParam String username) {
+
+	@RequestMapping(value = "/availability", method = RequestMethod.GET)
+	public @ResponseBody
+	String getAvailability(@RequestParam String username) {
 		List<User> users = userService.getUsers();
 		for (User u : users) {
 			if (u.getUsername().equals(username)) {
@@ -84,12 +105,13 @@ public class UserController {
 		}
 		return "true";
 	}
-	
-	@RequestMapping(value="{id}", method=RequestMethod.GET)
-	public @ResponseBody User get(@PathVariable int id) {
+
+	@RequestMapping(value = "{id}", method = RequestMethod.GET)
+	public @ResponseBody
+	User get(@PathVariable int id) {
 		User user = userService.getUserByID(id);
 		if (user == null) {
-			logger.warn("Retrieve user failed for id #"+ id);
+			logger.warn("Retrieve user failed for id #" + id);
 		}
 		return user;
 	}

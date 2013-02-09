@@ -9,8 +9,7 @@
 <script type="text/javascript"	src="<c:url value="/resources/javascript/jquery-1.9.1.min.js" /> "></script>
 <script type="text/javascript"	src="<c:url value="/resources/javascript/jquery.json-2.4.min.js" /> "></script>
 <script type="text/javascript" src="<c:url value="/resources/javascript/userJS.js" /> "></script>
-<link rel="stylesheet" href="<c:url value="/resources/popup.css" />"
-	type="text/css" media="screen, projection">
+<link href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" rel="stylesheet">
 <style type="text/css">
 .even {
 	background-color: silver;
@@ -19,30 +18,33 @@
 <title>Registration Page</title>
 
 </head>
-<body>
+<body class="ui-mobile-viewport ui-overlay-c">
 
-	<form:form modelAttribute="newUser" method="post"
-		action="/user/registration">
+	<form:form modelAttribute="newUser" method="post" id="registerform"
+		action="/user/registration" >
 		<table>
 			<tr>
 				<td>User Name :</td>
-				<td><form:input path="username" /></td>
-
+				<td><form:input id="username" path="username" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset"/></td>
+				<td><form:errors path="username" cssClass="error" /></td>
 			</tr>
 			<tr>
 				<td>Password :</td>
-				<td><form:password path="password" /></td>
+				<td><form:password path="password"  class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset"/></td>
+				<td><form:errors path="password" cssClass="error" /></td>
 			</tr>
 			<tr>
 				<td>Gender :</td>
 				<td><form:radiobutton path="gender" value="M" label="M" /> <form:radiobutton
 						path="gender" value="F" label="F" /></td>
+						<td><form:errors path="gender" cssClass="error" /></td>
 			</tr>
 			<tr>
 				<td>Disability :</td>
 				<td><form:checkbox path="disability" value="Leg" label="Leg" />
 					<form:checkbox path="disability" value="Hand" label="Hand" /> <form:checkbox
 						path="disability" value="Head" label="Head" /></td>
+						<td><form:errors path="disability" cssClass="error" /></td>
 				<td colspan="2"><input id="submit" name="Submit" type="submit"
 					value="submit" /></td>
 			</tr>

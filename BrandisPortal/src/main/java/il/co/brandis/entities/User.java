@@ -1,7 +1,10 @@
 package il.co.brandis.entities;
 
 import il.co.brandis.utils.EncryptionUtil;
-
+import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +21,6 @@ public class User {
 
 	/**
 	 * The user ID is very nice test
-	 * The user ID is not very nice 
 	 */ 
 	@Id
 	@GeneratedValue
@@ -28,18 +30,22 @@ public class User {
 	/**
 	 * The username
 	 */
+	@Size(min = 1, max = 20, message="Username length must be between 1-20")
 	@Column(name = "username")
 	private String username;
 
 	/**
 	 * The password as an MD5 value
 	 */
+	@Size(min = 1, max = 20, message="Password length must be between 1-20")
 	@Column(name = "password")
 	private String password;
 
+	@NotEmpty(message="You must choose gender")
 	@Column(name = "gender")
 	private String gender;
-
+	
+	@NotEmpty(message="You must choose disability")
 	@Column(name = "disability")
 	private String disability;
 	
@@ -81,9 +87,9 @@ public class User {
 
 	public User(int uId, String username, String password) {
 		super();
-		this.uId = uId;
-		this.username = username;
-		this.password = password;
+		setuId(uId);
+		setUsername(username);
+		setPassword(password);
 	}
 
 	public void setuId(int uId) {
