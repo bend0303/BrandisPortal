@@ -47,7 +47,7 @@ public class CartController {
 
 	@RequestMapping(value = "/cart/additemtocart", method = RequestMethod.POST)
 	public String addItem(HttpServletRequest req,
-			@RequestParam("productId") String id, ModelMap modelMap) {
+			@RequestParam("idForCart") String id, ModelMap modelMap) {
 		String METHOD = "addItem() - ";
 		int index;
 		User user = (User) req.getSession().getAttribute("userPersist");
