@@ -1,6 +1,8 @@
 package il.co.brandis.entities;
 
 import il.co.brandis.utils.EncryptionUtil;
+
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -31,6 +33,7 @@ public class User {
 	 * The username
 	 */
 	@Size(min = 1, max = 20, message="Username length must be between 1-20")
+	//@Email(message="Not a valid mail address")
 	@Column(name = "username")
 	private String username;
 
