@@ -15,5 +15,7 @@
 	<div class="box wrapper">
 		<jsp:include page="productsDisplay.jsp" />
 	</div>
+	
+	
 </body>
 </html>

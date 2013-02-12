@@ -2,9 +2,7 @@ package il.co.brandis.controller;
 
 import il.co.brandis.entities.User;
 import il.co.brandis.services.IUserManagerService;
-import il.co.brandis.services.UserManagerService;
 import il.co.brandis.utils.EncryptionUtil;
-import il.co.brandis.validators.UserValidator;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

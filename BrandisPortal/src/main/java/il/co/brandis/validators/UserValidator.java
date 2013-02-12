@@ -9,7 +9,7 @@ import org.springframework.validation.Validator;
 public class UserValidator implements Validator {
 
 	@Override
-	public boolean supports(Class clazz) {
+	public boolean supports(Class<?> clazz) {
 		return User.class.equals(clazz);
 	}
 
