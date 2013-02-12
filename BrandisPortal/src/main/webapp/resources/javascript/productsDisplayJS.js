@@ -50,12 +50,14 @@ $(document).ready(function() {
 			$('#total-hidden-charges').val(prev_charges);
 			
 			$('#left_bar .cart-info').append('<div class="shopp" id="each-'+thisID+'"><div class="label">'+itemname+'</div><div class="shopp-price"> $<em>'+totalitemprice+'</em></div><span class="shopp-quantity">'+itemamount+'</span><img src="/resources/images/remove.png" class="remove"/><br class="all" /></div>');
-			$('#each-'+thisID).children(".shopp-quantity").html(parseInt(iteamamount));
-			
-			$('#cart').css({'-webkit-transform' : 'rotate(20deg)','-moz-transform' : 'rotate(20deg)' });
+			$('#each-'+thisID).children(".shopp-quantity").html(parseInt(itemamount));
 		}
 		
-		setTimeout('angle()',200);
+		$.getJSON("/cart/additemtocartajax", {
+			id : $(this).attr('id'), amount : parseInt($(this).parent().find('.spinner').attr('aria-valuenow'))
+		
+		});
+
 	});	
 	
 
@@ -74,6 +76,9 @@ $(document).ready(function() {
 		$('#total-hidden-charges').val(prev_charges);
 		$(this).parent().remove();
 		
+		$.getJSON("/cart/deleteitemfromcartajax", {
+			id : thisID
+		});
 	});	
 
 	
@@ -99,4 +104,3 @@ function getpos(arr, obj) {
     if (arr[i] == obj) return i;
   }
 }
-function angle(){$('#cart').css({'-webkit-transform' : 'rotate(0deg)','-moz-transform' : 'rotate(0deg)' });}

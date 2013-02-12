@@ -11,6 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import il.co.brandis.entities.Cart;
@@ -38,9 +39,11 @@ public class CartController {
 		String singleDelete = req.getParameter("singleDelete");
 		if (singleDelete != null && !singleDelete.isEmpty()) {
 			int index = cart.getIndexByID(Integer.parseInt(singleDelete));
-			cart.setBalance(cart.getBalance() - cart.getItems().get(index).getPrice());
+			cart.setBalance(cart.getBalance()
+					- cart.getItems().get(index).getPrice());
 			cart.getItems().remove(index);
-			logger.info(user.getUsername() + "Removed item #"+singleDelete.toString()+" from the cart");
+			logger.info(user.getUsername() + "Removed item #"
+					+ singleDelete.toString() + " from the cart");
 		}
 		return "redirect:/cart/showcart";
 	}
@@ -65,14 +68,18 @@ public class CartController {
 		if (index == -1) {
 			CartItem item = new CartItem(product, amount);
 			user.getCart().addItem(item);
-			logger.info(user.getUsername() + "Added item #"+id.toString()+" to the cart");
+			logger.info(user.getUsername() + "Added item #" + id.toString()
+					+ " to the cart");
 		} else {
 			int pAmount = cart.getItems().get(index).getAmount();
 			CartItem item = cart.getItems().get(index);
 			item.setAmount(pAmount + amount);
-			item.setPrice(item.getProduct().getProductPrice() * item.getAmount());
-			cart.setBalance(cart.getBalance() + item.getProduct().getProductPrice() * amount);
-			logger.info(user.getUsername() + "Added item #"+id.toString()+" to the cart");
+			item.setPrice(item.getProduct().getProductPrice()
+					* item.getAmount());
+			cart.setBalance(cart.getBalance()
+					+ item.getProduct().getProductPrice() * amount);
+			logger.info(user.getUsername() + "Added item #" + id.toString()
+					+ " to the cart");
 		}
 
 		return "redirect:/products/products";
@@ -93,4 +100,53 @@ public class CartController {
 		return "cart";
 	}
 
+	@RequestMapping(value = "/cart/additemtocartajax", method = RequestMethod.GET)
+	public void addItemAjax(HttpServletRequest req, @RequestParam String id,
+			@RequestParam int amount) {
+		String METHOD = "addItem() - ";
+		int index;
+		User user = (User) req.getSession().getAttribute("userPersist");
+		if (user == null) {
+			logger.warn(METHOD + "Anonymouse access attempt");
+		}
+
+		Cart cart = user.getCart();
+
+		Product product = productService.getProductById(Integer.parseInt(id));
+		index = cart.getIndexByID(Integer.parseInt(id));
+
+		if (index == -1) {
+			CartItem item = new CartItem(product, amount);
+			user.getCart().addItem(item);
+			logger.info(user.getUsername() + "Added item #" + id.toString()
+					+ " to the cart");
+		} else {
+			int pAmount = cart.getItems().get(index).getAmount();
+			CartItem item = cart.getItems().get(index);
+			item.setAmount(pAmount + amount);
+			item.setPrice(item.getProduct().getProductPrice()
+					* item.getAmount());
+			cart.setBalance(cart.getBalance()
+					+ item.getProduct().getProductPrice() * amount);
+			logger.info(user.getUsername() + "Added item #" + id.toString()
+					+ " to the cart");
+		}
+
+	}
+
+	@RequestMapping(value = "/cart/deleteitemfromcartajax", method = RequestMethod.GET)
+	public void deleteItemFromCartAjax(HttpServletRequest req,
+			@RequestParam String id) {
+		String METHOD = "deleteItemFromCart() - ";
+		User user = (User) req.getSession().getAttribute("userPersist");
+		Cart cart = user.getCart();
+		int index = cart.getIndexByID(Integer.parseInt(id));
+		
+		cart.setBalance(cart.getBalance()
+				- cart.getItems().get(index).getPrice());
+		cart.getItems().remove(index);
+		logger.info(user.getUsername() + "Removed item #"
+				+ id + " from the cart");
+
+	}
 }

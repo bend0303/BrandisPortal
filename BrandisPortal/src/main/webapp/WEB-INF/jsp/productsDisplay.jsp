@@ -27,7 +27,6 @@
 </script>
 </head>
 <body>
-	<form id="items" action="/cart/additemtocart" method="post">
 		<ul id="productList">
 
 			<c:forEach var="p" items="${products}">
@@ -58,7 +57,6 @@
 			</c:forEach>
 
 		</ul>
-	</form>
 	<a href="/cart/showcart">Cart</a>
 
 	<div id="left_bar">
