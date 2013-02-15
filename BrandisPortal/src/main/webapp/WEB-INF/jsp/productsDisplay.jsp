@@ -1,5 +1,5 @@
 <%@page import="il.co.brandis.services.ProductManagerService"%>
-<%@page import="il.co.brandis.entities.Product"%>
+<%@page import="il.co.brandis.entities.DBProduct"%>
 <%@page import="java.util.List"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page language="java" contentType="text/html; charset=US-ASCII"
@@ -34,15 +34,15 @@
 					<div>
 						<table width="100%">
 							<tr>
-								<td width="15%" rowspan="2" id="productImage"><img
-									width="100px" height="100px"
-									src="<c:url value="/resources/images/newProduct.jpg"/>" /></td>
+								<td width="15%" rowspan="2" id="productImage">
+								<img width="100px" height="100px"
+									src="file:///C:/Test/Upload/ben.png" /></td>
 								<td width="55%" id="productName" class="productTitle"><c:out
 										value="${p.productName}" /></td>
 								<td align="center"><img alt="Buy"
 									src="<c:url value="/resources/images/shoppingCart.png"/>"
 									title="Add Item To Cart" class="shoppingCartIMG"
-									name="idForCart" id="<c:out value="${p.productId}"/>" > 
+									name="idForCart" id="<c:out value="${p.productImage}"/>" > 
 									<input style="font-size: 12px;" class="spinner"
 									name="amount<c:out value="${p.productId}"/>" /></td>
 							</tr>

@@ -1,47 +1,27 @@
 package il.co.brandis.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Table;
-import javax.persistence.Id;
+import org.springframework.web.multipart.MultipartFile;
 
-@Entity
-@Table(name = "PRODUCTS")
 public class Product {
 
-	@Id
-	@GeneratedValue
-	@Column(name = "product_id")
-	private int productId;
-	@Column(name = "product_name")
 	private String productName;
-	@Column(name = "product_Des")
 	private String productDesc;
-	@Column(name = "product_price")
 	private double productPrice;
+	private MultipartFile productImage;
 
-	public Product(int id) {
-		productId = id;
-	}
 
-	public Product(String productName, String productDesc, double productPrice) {
+
+	public Product(String productName, String productDesc, double productPrice,
+			MultipartFile productImage) {
 		super();
 		this.productName = productName;
 		this.productDesc = productDesc;
 		this.productPrice = productPrice;
+		this.productImage = productImage;
 	}
 
 	public Product() {
 		super();
-	}
-
-	public int getProductId() {
-		return productId;
-	}
-
-	public void setProductId(int productId) {
-		this.productId = productId;
 	}
 
 	public String getProductName() {
@@ -66,6 +46,14 @@ public class Product {
 
 	public void setProductPrice(double productPrice) {
 		this.productPrice = productPrice;
+	}
+
+	public MultipartFile getProductImage() {
+		return productImage;
+	}
+
+	public void setProductImage(MultipartFile productImage) {
+		this.productImage = productImage;
 	}
 
 }

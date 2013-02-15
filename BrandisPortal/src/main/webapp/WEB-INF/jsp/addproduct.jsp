@@ -16,7 +16,7 @@
 <body>
 
 	<form:form modelAttribute="newProduct" method="post"
-		action="/products/addproduct">
+		action="/products/addproduct" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td>Product's Name :</td>
@@ -29,6 +29,11 @@
 			<tr>
 				<td>Product's price :</td>
 				<td><form:input path="productPrice" /></td>
+			</tr>
+			<tr>
+				<td><form:input type="file" path="productImage" /></td>
+			</tr>
+			<tr>
 				<td colspan="2"><input name="Submit" type="submit"
 					value="submit" /></td>
 			</tr>

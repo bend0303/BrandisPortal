@@ -36,7 +36,6 @@ public class User {
 	/**
 	 * The password as an MD5 value
 	 */
-	@Size(min = 1, max = 20, message="Password length must be between 1-20")
 	@Column(name = "password")
 	private String password;
 

@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import il.co.brandis.entities.Product;
+import il.co.brandis.entities.DBProduct;
 
 @Repository
 public class ProductDAO implements IProductDAO {
@@ -15,23 +15,23 @@ public class ProductDAO implements IProductDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public void addProduct(Product ob) {
+	public void addProduct(DBProduct ob) {
 		sessionFactory.getCurrentSession().save(ob);
 	}
 
 	public void delProduct(int pId) {
-		sessionFactory.getCurrentSession().delete(new Product(pId));
+		sessionFactory.getCurrentSession().delete(new DBProduct(pId));
 	}
 
-	public Product getProductById(int pId) {
-		return (Product) sessionFactory.getCurrentSession().get(Product.class,
+	public DBProduct getProductById(int pId) {
+		return (DBProduct) sessionFactory.getCurrentSession().get(DBProduct.class,
 				pId);
 	}
 
-	public List<Product> getProducts() {
+	public List<DBProduct> getProducts() {
 		@SuppressWarnings("unchecked")
-		List<Product> products = (List<Product>) sessionFactory
-				.getCurrentSession().createQuery("from Product").list();
+		List<DBProduct> products = (List<DBProduct>) sessionFactory
+				.getCurrentSession().createQuery("from DBProduct").list();
 		return products;
 	}
 

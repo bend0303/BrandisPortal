@@ -2,11 +2,11 @@ package il.co.brandis.services;
 
 import java.util.List;
 
-import il.co.brandis.entities.Product;
+import il.co.brandis.entities.DBProduct;
 
 public interface IProductManagerService {
-	public void addProduct(Product product);
-	public List<Product> getProducts();
-	public Product getProductById(int id);
+	public void addProduct(DBProduct product);
+	public List<DBProduct> getProducts();
+	public DBProduct getProductById(int id);
 
 }

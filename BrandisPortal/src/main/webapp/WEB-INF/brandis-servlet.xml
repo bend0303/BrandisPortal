@@ -11,6 +11,9 @@
          http://www.springframework.org/schema/beans
          http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+ <bean id="multipartResolver"
+  class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+     
 <bean id="messageSource"
 class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 
@@ -53,7 +56,7 @@ class="org.springframework.context.support.ReloadableResourceBundleMessageSource
 		<property name="annotatedClasses">
 			<list>
 				<value>il.co.brandis.entities.User</value>
-				<value>il.co.brandis.entities.Product</value>
+				<value>il.co.brandis.entities.DBProduct</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

@@ -2,19 +2,19 @@ package il.co.brandis.entities;
 
 public class CartItem {
 
-	private Product product;
+	private DBProduct product;
 	private int amount;
 	private double price;
-	public CartItem(Product product, int amount) {
+	public CartItem(DBProduct product, int amount) {
 		super();
 		this.product = product;
 		this.amount = amount;
 		this.price = amount * product.getProductPrice();
 	}
-	public Product getProduct() {
+	public DBProduct getProduct() {
 		return product;
 	}
-	public void setProduct(Product product) {
+	public void setProduct(DBProduct product) {
 		this.product = product;
 	}
 	public int getAmount() {

@@ -1,5 +1,5 @@
 <%@page import="il.co.brandis.services.ProductManagerService"%>
-<%@page import="il.co.brandis.entities.Product"%>
+<%@page import="il.co.brandis.entities.DBProduct"%>
 <%@page import="java.util.List"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page language="java" contentType="text/html; charset=US-ASCII"

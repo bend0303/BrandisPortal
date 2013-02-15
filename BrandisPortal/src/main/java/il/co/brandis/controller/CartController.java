@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import il.co.brandis.entities.Cart;
 import il.co.brandis.entities.CartItem;
-import il.co.brandis.entities.Product;
+import il.co.brandis.entities.DBProduct;
 import il.co.brandis.entities.User;
 import il.co.brandis.services.IProductManagerService;
 
@@ -61,7 +61,7 @@ public class CartController {
 		Cart cart = user.getCart();
 
 		int amount = Integer.parseInt(req.getParameter("amount" + id));
-		Product product = productService.getProductById(Integer.parseInt(id));
+		DBProduct product = productService.getProductById(Integer.parseInt(id));
 
 		// (ShoppingCart.CartEntry) contents.get(product)
 		index = cart.getIndexByID(Integer.parseInt(id));
@@ -112,7 +112,7 @@ public class CartController {
 
 		Cart cart = user.getCart();
 
-		Product product = productService.getProductById(Integer.parseInt(id));
+		DBProduct product = productService.getProductById(Integer.parseInt(id));
 		index = cart.getIndexByID(Integer.parseInt(id));
 
 		if (index == -1) {
