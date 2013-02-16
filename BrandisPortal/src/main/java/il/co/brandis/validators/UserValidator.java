@@ -15,10 +15,10 @@ public class UserValidator implements Validator {
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "username.required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "email.required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "password.required");
 		ValidationUtils.rejectIfEmpty(errors, "gender", "gender.required");
-		ValidationUtils.rejectIfEmpty(errors, "disability", "disability.required");
+		ValidationUtils.rejectIfEmpty(errors, "fullName", "fullName.required");
 	}
 
 }

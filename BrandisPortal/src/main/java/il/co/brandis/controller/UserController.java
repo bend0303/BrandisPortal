@@ -34,25 +34,20 @@ public class UserController {
 	protected static Logger logger = Logger.getLogger(UserController.class
 			.getName());
 
-	@RequestMapping("/loginform")
-	public String ShowLogin() {
-		return "login";
-	}
-
 	@RequestMapping("/login")
 	public String loginAuthentication(HttpServletRequest req, ModelMap modelMap) {
 
-		String username = req.getParameter("user");
+		String email = req.getParameter("email");
 		String password = req.getParameter("pass");
-		List<User> loginlist = userService.validateLogin(username,
+		List<User> loginlist = userService.validateLogin(email,
 				EncryptionUtil.encrypt(password));
 		if (loginlist.size() == 1) {
 			modelMap.addAttribute("userPersist", loginlist.get(0));
-			logger.info("Loggin authentication succeed: " + username);
+			logger.info("Loggin authentication succeed: " + email);
 			return "loginsuccess";
 		} else {
-			logger.warn("Loggin authentication failed: " + username);
-			return "login";
+			logger.warn("Loggin authentication failed: " + email);
+			return "index";
 		}
 
 	}
@@ -60,35 +55,35 @@ public class UserController {
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "login";
+		return "index";
 
 	}
 
-	@RequestMapping(value = "/registerform")
+	@RequestMapping(value = "/index")
 	public String registerForm(ModelMap modelMap) {
 		modelMap.addAttribute("newUser", new User());
-		return "registration";
+		return "index";
 	}
 
 	@RequestMapping(value = "/registration")
 	public String registerUser(@Valid @ModelAttribute(value = "newUser") User user,
 			BindingResult result, ModelMap modelMap) {
 		if (result.hasErrors()) {
-			return "registration";
+			return "redirect:/user/index";
 		} else {
 			userService.addUser(user);
-			logger.info("Loggin register succeed: " + user.getUsername());
+			logger.info("Loggin register succeed: " + user.getEmail());
 		}
 		modelMap.remove("newUser");
-		return "login";
+		return "redirect:/user/index";
 	}
 
 	@RequestMapping(value = "/availability", method = RequestMethod.GET)
 	public @ResponseBody
-	String getAvailability(@RequestParam String username) {
+	String getAvailability(@RequestParam String email) {
 		List<User> users = userService.getUsers();
 		for (User u : users) {
-			if (u.getUsername().equals(username)) {
+			if (u.getEmail().equals(email)) {
 				return "false";
 			}
 		}

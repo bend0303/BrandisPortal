@@ -26,10 +26,10 @@
 				<div>
 					<table width="100%">
 						<tr>
-							<td width="15%" rowspan="2" id="productImage"><img width="100px" height="100px" src="file:///C:/Test/Upload/ben.png" /></td>
+							<td width="15%" rowspan="2" id="productImage"><img width="100px" height="100px" src="" /></td>
 							<td width="55%" id="productName" class="productTitle"><c:out value="${p.productName}" /></td>
 							<td align="center"><img alt="Buy" src="<c:url value="/resources/images/shoppingCart.png"/>" title="Add Item To Cart"
-								class="shoppingCartIMG" name="idForCart" id="<c:out value="${p.productImage}"/>"> <input style="font-size: 12px;" class="spinner"
+								class="shoppingCartIMG" name="idForCart" id="<c:out value="${p.productId}"/>"> <input style="font-size: 12px;" class="spinner"
 								name="amount<c:out value="${p.productId}"/>" /></td>
 						</tr>
 						<tr>

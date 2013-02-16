@@ -25,8 +25,8 @@
 		<table>
 			<tr>
 				<td>User Name :</td>
-				<td><form:input id="username" path="username" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset"/></td>
-				<td><form:errors path="username" cssClass="error" /></td>
+				<td><form:input id="email" path="email" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset"/></td>
+				<td><form:errors path="email" cssClass="error" /></td>
 			</tr>
 			<tr>
 				<td>Password :</td>

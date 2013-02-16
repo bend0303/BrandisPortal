@@ -21,8 +21,8 @@
 	<form method="post" action="/user/login">
 		<table align="left">
 			<tr>
-				<td>User Name</td>
-				<td><input name="user" type="text" /></td>
+				<td>E-mail</td>
+				<td><input name="email" type="text" /></td>
 			</tr>
 			<tr>
 				<td>Password</td>

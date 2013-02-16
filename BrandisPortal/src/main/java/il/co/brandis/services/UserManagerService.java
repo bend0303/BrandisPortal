@@ -16,8 +16,8 @@ public class UserManagerService implements IUserManagerService {
 	private IUserDAO UsersDAO;
 
 	@Override
-	public List<User> validateLogin(String user, String password) {
-		return UsersDAO.validateLogin(user, password);
+	public List<User> validateLogin(String email, String password) {
+		return UsersDAO.validateLogin(email, password);
 	}
 
 	@Transactional

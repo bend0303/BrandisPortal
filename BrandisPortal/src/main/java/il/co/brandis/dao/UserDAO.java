@@ -18,13 +18,13 @@ public class UserDAO implements IUserDAO {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<User> validateLogin(String username, String password) {
+	public List<User> validateLogin(String email, String password) {
 		@SuppressWarnings("unchecked")
 		List<User> users = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"from User where username=:user and password=:password")
-				.setString("user", username).setString("password", password)
+						"from User where email=:email and password=:password")
+				.setString("email", email).setString("password", password)
 				.list();
 		return users;
 		//

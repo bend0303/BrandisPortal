@@ -10,7 +10,7 @@
 <body>
 	<h1>
 		Welcome
-		<core:out value="${userPersist.username}" />
+		<core:out value="${userPersist.email}" />
 	</h1>
 	<br>
 	<h3>

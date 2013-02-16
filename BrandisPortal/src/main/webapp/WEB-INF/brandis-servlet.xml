@@ -22,7 +22,6 @@ class="org.springframework.context.support.ReloadableResourceBundleMessageSource
 </bean>
 
 	<bean id="userService" class="il.co.brandis.services.UserManagerService"/>
-	
 
 	<!-- <bean class="il.co.brandis.controller.UserController"
 		p:userService-ref="userService" p:validator-ref="userValidator" /> 

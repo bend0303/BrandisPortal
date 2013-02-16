@@ -1,6 +1,8 @@
 package il.co.brandis.entities;
 
 import il.co.brandis.utils.EncryptionUtil;
+
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import javax.persistence.Column;
@@ -26,12 +28,12 @@ public class User {
 	private int uId;
 
 	/**
-	 * The username
+	 * The email
 	 */
-	@Size(min = 1, max = 20, message="Username length must be between 1-20")
+	//@Size(min = 1, max = 20, message="E-mail length must be between 1-20")
 	//@Email(message="Not a valid mail address")
-	@Column(name = "username")
-	private String username;
+	@Column(name = "email")
+	private String email;
 
 	/**
 	 * The password as an MD5 value
@@ -43,9 +45,9 @@ public class User {
 	@Column(name = "gender")
 	private String gender;
 	
-	@NotEmpty(message="You must choose disability")
-	@Column(name = "disability")
-	private String disability;
+	@NotEmpty(message="You must enter your full name")
+	@Column(name = "fullname")
+	private String fullName;
 	
 	@Transient
 	private Cart cart;
@@ -66,12 +68,13 @@ public class User {
 		this.gender = gender;
 	}
 
-	public String getDisability() {
-		return disability;
+
+	public String getFullName() {
+		return fullName;
 	}
 
-	public void setDisability(String disability) {
-		this.disability = disability;
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 
 	public User() {
@@ -83,23 +86,26 @@ public class User {
 		return uId;
 	}
 
-	public User(int uId, String username, String password) {
+	public User(String email, String password, String gender, String fullName,
+			Cart cart) {
 		super();
-		setuId(uId);
-		setUsername(username);
-		setPassword(password);
+		this.email = email;
+		this.password = password;
+		this.gender = gender;
+		this.fullName = fullName;
+		this.cart = cart;
 	}
 
 	public void setuId(int uId) {
 		this.uId = uId;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {

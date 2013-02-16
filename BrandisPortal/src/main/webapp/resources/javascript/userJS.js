@@ -1,8 +1,8 @@
 $(document).ready(
 		function() {
 			// check name availability on focus lost
-			$('#username').blur(function() {
-				if ($('#username').val()) {
+			$('#email').blur(function() {
+				if ($('#email').val()) {
 					checkAvailability();
 				}
 			});
@@ -11,16 +11,24 @@ $(document).ready(
 
 function checkAvailability() {
 	$.getJSON("/user/availability", {
-		username : $('#username').val()
+		email : $('#email').val()
 	}, function(available) {
 		if (available == false) {
-			alert("Username already exists aaaaa");
-			$('#submit').attr("disabled", true);
+			alert("Email already exists");
+			$('#signup').attr("disabled", true);
 
 		} else {
-			$('#submit').attr("disabled", false);
+			$('#signup').attr("disabled", false);
 		}
 
 	});
+}
+
+function validatePass(p1, p2) {
+	if (p1.value != p2.value || p1.value == '' || p2.value == '') {
+		p2.setCustomValidity('Password does not match');
+	} else {
+		p2.setCustomValidity('');
+	}
 }
 

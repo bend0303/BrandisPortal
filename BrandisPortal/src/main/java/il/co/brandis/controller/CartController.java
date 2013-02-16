@@ -11,7 +11,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import il.co.brandis.entities.Cart;
@@ -42,7 +41,7 @@ public class CartController {
 			cart.setBalance(cart.getBalance()
 					- cart.getItems().get(index).getPrice());
 			cart.getItems().remove(index);
-			logger.info(user.getUsername() + "Removed item #"
+			logger.info(user.getEmail() + "Removed item #"
 					+ singleDelete.toString() + " from the cart");
 		}
 		return "redirect:/cart/showcart";
@@ -68,7 +67,7 @@ public class CartController {
 		if (index == -1) {
 			CartItem item = new CartItem(product, amount);
 			user.getCart().addItem(item);
-			logger.info(user.getUsername() + "Added item #" + id.toString()
+			logger.info(user.getEmail() + "Added item #" + id.toString()
 					+ " to the cart");
 		} else {
 			int pAmount = cart.getItems().get(index).getAmount();
@@ -78,7 +77,7 @@ public class CartController {
 					* item.getAmount());
 			cart.setBalance(cart.getBalance()
 					+ item.getProduct().getProductPrice() * amount);
-			logger.info(user.getUsername() + "Added item #" + id.toString()
+			logger.info(user.getEmail() + "Added item #" + id.toString()
 					+ " to the cart");
 		}
 
@@ -118,7 +117,7 @@ public class CartController {
 		if (index == -1) {
 			CartItem item = new CartItem(product, amount);
 			user.getCart().addItem(item);
-			logger.info(user.getUsername() + "Added item #" + id.toString()
+			logger.info(user.getEmail() + "Added item #" + id.toString()
 					+ " to the cart");
 		} else {
 			int pAmount = cart.getItems().get(index).getAmount();
@@ -128,7 +127,7 @@ public class CartController {
 					* item.getAmount());
 			cart.setBalance(cart.getBalance()
 					+ item.getProduct().getProductPrice() * amount);
-			logger.info(user.getUsername() + "Added item #" + id.toString()
+			logger.info(user.getEmail() + "Added item #" + id.toString()
 					+ " to the cart");
 		}
 
@@ -145,7 +144,7 @@ public class CartController {
 		cart.setBalance(cart.getBalance()
 				- cart.getItems().get(index).getPrice());
 		cart.getItems().remove(index);
-		logger.info(user.getUsername() + "Removed item #"
+		logger.info(user.getEmail() + "Removed item #"
 				+ id + " from the cart");
 
 	}
