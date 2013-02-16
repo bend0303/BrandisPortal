@@ -16,7 +16,7 @@ public class DBProduct {
 	private int productId;
 	@Column(name = "product_name")
 	private String productName;
-	@Column(name = "product_Des")
+	@Column(name = "product_Des", length=900)
 	private String productDesc;
 	@Column(name = "product_price")
 	private double productPrice;

@@ -11,23 +11,22 @@
          http://www.springframework.org/schema/beans
          http://www.springframework.org/schema/beans/spring-beans.xsd">
 
- <bean id="multipartResolver"
-  class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
-     
-<bean id="messageSource"
-class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 
-<property name="basename" value="/WEB-INF/messages" />
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 
-</bean>
+		<property name="basename" value="/WEB-INF/messages" />
 
-	<bean id="userService" class="il.co.brandis.services.UserManagerService"/>
-	
+	</bean>
 
-	<!-- <bean class="il.co.brandis.controller.UserController"
-		p:userService-ref="userService" p:validator-ref="userValidator" /> 
-		<bean id="userValidator" class="il.co.brandis.validators.UserValidator"/>-->
-	
+	<bean id="userService" class="il.co.brandis.services.UserManagerService" />
+
+
+	<!-- <bean class="il.co.brandis.controller.UserController" p:userService-ref="userService" 
+		p:validator-ref="userValidator" /> <bean id="userValidator" class="il.co.brandis.validators.UserValidator"/> -->
+
 	<context:component-scan base-package="il.co.brandis" />
 	<mvc:annotation-driven />
 	<tx:annotation-driven />
@@ -61,9 +60,7 @@ class="org.springframework.context.support.ReloadableResourceBundleMessageSource
 		</property>
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.DerbyDialect</prop>
-				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.hbm2ddl.auto">${jdbc.hbm2ddl.auto}</prop>
 			</props>
 		</property>
 	</bean>
