@@ -66,7 +66,6 @@ public class ProductController {
 		}
 		Gson gson = new Gson();
 		List<DBProduct> products = productService.getProducts();
-		String json = gson.toJson(products);
 		
 		modelMap.addAttribute("products", products);
 		Cart cart = user.getCart();

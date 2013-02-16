@@ -29,7 +29,7 @@ $(document)
 																			// v
 
 					$.getJSON("/products/getproducts", function(data) {
-
+						alert("aaa");
 					});
 
 					$("#slidingTopContent").show();

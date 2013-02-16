@@ -20,34 +20,6 @@
 </script>
 </head>
 <body>
-	<ul id="productList">
-		<c:forEach var="p" items="${products}">
-			<li>
-				<div>
-					<table width="100%">
-						<tr>
-							<td width="15%" rowspan="2" id="productImage"><img width="100px" height="100px" src="" /></td>
-							<td width="55%" id="productName" class="productTitle"><c:out value="${p.productName}" /></td>
-							<td align="center"><img alt="Buy" src="<c:url value="/resources/images/shoppingCart.png"/>" title="Add Item To Cart"
-								class="shoppingCartIMG" name="idForCart" id="<c:out value="${p.productId}"/>"> <input style="font-size: 12px;" class="spinner"
-								name="amount<c:out value="${p.productId}"/>" /></td>
-						</tr>
-						<tr>
-							<td class="productDesc"><c:out value="${p.productDesc}" /></td>
-							<td align="center" class="productDesc"><b>Price: </b> <span class="price"><c:out value="${p.productPrice}" /></span></td>
-						</tr>
-					</table>
-				</div>
-			</li>
-		</c:forEach>
-	</ul>
-	<a href="/cart/showcart">Cart</a>
-	<div id="left_bar">
-		<form action="#" id="cart_form" name="cart_form">
-			<div class="cart-info"></div>
-			<div class="cart-total">
-				<b>Total Charges:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> $<span>0</span> <input type="hidden" name="total-hidden-charges"
-					id="total-hidden-charges" value="0" />
 	<div id="uppderDockDiv">
 	<table width="100%">
 			<tr>
