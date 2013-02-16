@@ -19,14 +19,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
+import com.google.gson.Gson;
 
 @SessionAttributes({ "userPersist" })
 @Controller
 public class ProductController {
 	@Autowired
 	private IProductManagerService productService;
-	private String saveDirectory = "C:/Test/Upload/";
+	private String saveDirectory = "../upload/images/";
 	
 	protected static Logger logger = Logger.getLogger(ProductController.class.getName());
 
@@ -54,17 +58,27 @@ public class ProductController {
 	@RequestMapping(value = "/products/products")
 	public String showProducts(HttpServletRequest req, ModelMap modelMap) {
 		String METHOD = "showProducts()";
+		
 		User user = (User) req.getSession().getAttribute("userPersist");
 		if (user == null) {
 			logger.warn(METHOD + "Anonymouse access attempt");
 			return "login";
 		}
+		Gson gson = new Gson();
 		List<DBProduct> products = productService.getProducts();
+		String json = gson.toJson(products);
+		
 		modelMap.addAttribute("products", products);
 		Cart cart = user.getCart();
 		modelMap.addAttribute("cartItems", cart);
 		List<CartItem> cartItems = cart.getItems();
 		modelMap.addAttribute("cartItems", cartItems);
 		return "productsPage";
+	}
+	
+	@RequestMapping(value="/products/getproducts",headers="Accept=*/*", method = RequestMethod.GET) // Using for ajax call
+	public @ResponseBody List<DBProduct> getProductsAjax() {
+		List<DBProduct> products = productService.getProducts();
+		return products;
 	}
 }

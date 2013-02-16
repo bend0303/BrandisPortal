@@ -48,10 +48,61 @@
 			<div class="cart-total">
 				<b>Total Charges:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> $<span>0</span> <input type="hidden" name="total-hidden-charges"
 					id="total-hidden-charges" value="0" />
+	<div id="uppderDockDiv">
+	<table width="100%">
+			<tr>
+				<td id="headerTD">
+					<p id="pageTitle">JavaEE Final Project</p>
+				</td>
+				<td id="menuTD"></td>
+			</tr>
+		</table>
+	<div id="slidingTopWrap">
+		<div id="slidingTopContent" style="display: none;">
+			<div id="left_bar">
+				<form action="#" id="cart_form" name="cart_form">
+					<div class="cart-info"></div>
+					<div class="cart-total">
+						<b>Total Charges:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> $<span>0</span> <input type="hidden" name="total-hidden-charges" id="total-hidden-charges" value="0" />
+					</div>
+					<button type="submit" id="Submit">CheckOut</button>
+				</form>
 			</div>
-			<button type="submit" id="Submit">CheckOut</button>
-		</form>
+		</div>
+		<div id="slidingTopFooter">
+			<div id="slidingTopFooterLeft">
+				<img alt="Show Basket" src="../resources/images/arrow-down.png" /> <a href="no-js.htm" class="slidingTopTrigger" onclick="return false;">Show Basket</a>
+			</div>
+		</div>
 	</div>
+	</div>
+	<div id="productsDiv">
+		<ul id="productList">
+			<c:forEach var="p" items="${products}">
+				<li>
+					<div class="singleProductDiv">
+						<table class="productTable" width="100%">
+							<tr>
+								<td width="15%" class="productImgTd" rowspan="2">
+									<img width="100px" height="100px" class="productImage" src="<c:url value="/resources/images/newProduct.jpg"/>" />
+								</td>
+								<td width="55%" id="productName" class="productTitle">
+									<c:out value="${p.productName}" />
+								</td>
+								<td align="center"><img alt="Buy" id="<c:out value="${p.productId}"/>" src="<c:url value="/resources/images/shoppingCart.png"/>" title="Add Item To Cart" class="shoppingCartIMG" name="idForCart" /> <input
+									style="font-size: 12px;" class="spinner" name="amount<c:out value="${p.productId}"/>" /></td>
+							</tr>
+							<tr>
+								<td class="productDesc"><c:out value="${p.productDesc}" /></td>
+								<td align="center" class="productPrice"><b>Price: </b> <span class="price"><c:out value="${p.productPrice}" /></span></td>
+							</tr>
+						</table>
+					</div>
+				</li>
+			</c:forEach>
+		</ul>
+	</div>
+	<a href="/cart/showcart">Cart</a>
 </body>
 </html>
 <%-- 	<div class="wrapperDiv">
