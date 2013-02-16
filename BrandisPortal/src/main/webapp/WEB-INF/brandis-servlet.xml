@@ -15,10 +15,12 @@
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 
 	<bean id="messageSource"
-		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource" >
 
 		<property name="basename" value="/WEB-INF/messages" />
+	</bean>
 		<bean id="userService" class="il.co.brandis.services.UserManagerService" />
+		
 		<!-- <bean class="il.co.brandis.controller.UserController" p:userService-ref="userService" 
 			p:validator-ref="userValidator" /> <bean id="userValidator" class="il.co.brandis.validators.UserValidator"/> -->
 
