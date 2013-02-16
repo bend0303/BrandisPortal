@@ -7,6 +7,7 @@ $(function() {
 	});
 });
 var productslocal;
+var Arrays = new Array();
 $(document)
 		.ready(
 
@@ -21,17 +22,23 @@ $(document)
 					controls.appendTo('#productsDiv');
 					var productDesc = $('.productDesc');
 					productDesc.text(productDesc.text().substr(0, 100)); // limit
-																			// product
-																			// desc
-																			// to
-																			// 100
-																			// chars
-																			// v
+					// product
+					// desc
+					// to
+					// 100
+					// chars
+					// v
 
 					$.getJSON("/products/getproducts", function(data) {
-						alert("aaa");
+						
 					});
 
+					
+					$.getJSON("/cart/getcart", function(cart) {
+						cart.items.forEach(function(item) {
+							pushToCart(Arrays, item.product.productPrice, item.product.productId, item.product.productName, item.amount );
+						});
+					});
 					$("#slidingTopContent").show();
 
 					$(document)
@@ -59,7 +66,7 @@ $(document)
 															}
 														});
 									});
-					var Arrays = new Array();
+					
 					$('.shoppingCartIMG')
 							.click(
 									function() {
@@ -109,33 +116,8 @@ $(document)
 											$('#total-hidden-charges').val(
 													prev_charges);
 										} else {
-											Arrays.push(thisID);
-											var totalitemprice = itemprice
-													* itemamount;
-											var prev_charges = $(
-													'.cart-total span').html();
-											prev_charges = parseInt(prev_charges)
-													+ (parseInt(itemprice) * parseInt(itemamount));
-
-											$('.cart-total span').html(
-													prev_charges);
-											$('#total-hidden-charges').val(
-													prev_charges);
-
-											$('#left_bar .cart-info')
-													.append(
-															'<div class="shopp" id="each-'
-																	+ thisID
-																	+ '"><div class="label">'
-																	+ itemname
-																	+ '</div><div class="shopp-price"> $<em>'
-																	+ totalitemprice
-																	+ '</em></div><span class="shopp-quantity">'
-																	+ itemamount
-																	+ '</span><img src="/resources/images/remove.png" class="remove"/><br class="all" /></div>');
-											$('#each-' + thisID).children(
-													".shopp-quantity").html(
-													parseInt(itemamount));
+											pushToCart(Arrays, itemprice, thisID, itemname, itemamount );
+										
 										}
 
 										$.getJSON("/cart/additemtocartajax", {
@@ -205,6 +187,37 @@ function getpos(arr, obj) {
 			return i;
 	}
 }
+
+function pushToCart(Arrays, itemprice, thisID, itemname, itemamount ){
+	Arrays.push(thisID);
+	var totalitemprice = itemprice
+			* itemamount;
+	var prev_charges = $(
+			'.cart-total span').html();
+	prev_charges = parseInt(prev_charges)
+			+ (parseInt(itemprice) * parseInt(itemamount));
+
+	$('.cart-total span').html(
+			prev_charges);
+	$('#total-hidden-charges').val(
+			prev_charges);
+
+	$('#left_bar .cart-info')
+			.append(
+					'<div class="shopp" id="each-'
+							+ thisID
+							+ '"><div class="label">'
+							+ itemname
+							+ '</div><div class="shopp-price"> $<em>'
+							+ totalitemprice
+							+ '</em></div><span class="shopp-quantity">'
+							+ itemamount
+							+ '</span><img src="/resources/images/remove.png" class="remove"/><br class="all" /></div>');
+	$('#each-' + thisID).children(
+			".shopp-quantity").html(
+			parseInt(itemamount));
+}
+
 (function($) {
 
 	// Creating the sweetPages jQuery plugin:

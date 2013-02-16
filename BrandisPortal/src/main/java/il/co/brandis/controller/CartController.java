@@ -11,6 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import il.co.brandis.entities.Cart;
@@ -147,5 +148,14 @@ public class CartController {
 		logger.info(user.getEmail() + "Removed item #"
 				+ id + " from the cart");
 
+	}
+	
+	@RequestMapping(value = "/cart/getcart", method = RequestMethod.GET)
+	public @ResponseBody
+	Cart getCart(HttpServletRequest req) {
+		String METHOD = "getCart() - ";
+		User user = (User) req.getSession().getAttribute("userPersist");
+		Cart cart = user.getCart();
+		return cart;
 	}
 }

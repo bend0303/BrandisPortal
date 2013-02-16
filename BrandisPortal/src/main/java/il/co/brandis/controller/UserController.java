@@ -44,7 +44,7 @@ public class UserController {
 		if (loginlist.size() == 1) {
 			modelMap.addAttribute("userPersist", loginlist.get(0));
 			logger.info("Loggin authentication succeed: " + email);
-			return "loginsuccess";
+			return "redirect:/products/products";
 		} else {
 			logger.warn("Loggin authentication failed: " + email);
 			return "index";
