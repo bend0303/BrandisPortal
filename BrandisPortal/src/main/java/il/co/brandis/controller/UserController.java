@@ -90,13 +90,4 @@ public class UserController {
 		return "true";
 	}
 
-	@RequestMapping(value = "{id}", method = RequestMethod.GET)
-	public @ResponseBody
-	User get(@PathVariable int id) {
-		User user = userService.getUserByID(id);
-		if (user == null) {
-			logger.warn("Retrieve user failed for id #" + id);
-		}
-		return user;
-	}
 }
