@@ -35,10 +35,10 @@ public class UserDAO implements IUserDAO {
 		logger.debug("User has been added");
 	}
 
-	public void delUser(User user) {
+	public boolean delUser(User user) {
 		sessionFactory.getCurrentSession().delete(user);
 		logger.debug("User has been deleted");
-
+		return true;
 	}
 
 	public User getUser(int uId) {
@@ -57,5 +57,4 @@ public class UserDAO implements IUserDAO {
 		logger.debug("Users list has been fetched");
 		return users;
 	}
-
 }

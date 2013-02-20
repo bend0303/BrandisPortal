@@ -34,4 +34,9 @@ public class UserManagerService implements IUserManagerService {
 	public User getUserByID(int id) {
 		return UsersDAO.getUser(id);
 	}
+	
+	@Override
+	public boolean deleteUser(User user) {
+		return UsersDAO.delUser(user);
+	}
 }

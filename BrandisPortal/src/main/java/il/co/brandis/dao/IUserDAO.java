@@ -10,7 +10,7 @@ public interface IUserDAO {
 
 	public List<User> validateLogin(String user, String password);
 
-	public void delUser(User user);
+	public boolean delUser(User user);
 
 	public User getUser(int uId);
 

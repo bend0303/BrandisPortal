@@ -10,5 +10,6 @@ public interface IUserManagerService {
 	public List<User> validateLogin(String user, String password);
 	public List<User> getUsers();
 	public User getUserByID(int id);
+	boolean deleteUser(User user);
 
 }
