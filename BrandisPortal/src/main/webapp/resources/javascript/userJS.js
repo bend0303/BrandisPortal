@@ -8,15 +8,21 @@ $(document).ready(
 			});
 			
 		});
+$.getJSON("/brandis/cart/additemtocartajax", {
+	id : $(this).attr('id'),
+	amount : parseInt($(this).parent()
+			.find('.spinner').attr(
+					'aria-valuenow'))
+
+});
 
 function checkAvailability() {
-	$.getJSON("/user/availability", {
+	$.getJSON("/brandis/user/availability", {
 		email : $('#email').val()
 	}, function(available) {
 		if (available == false) {
 			alert("Email already exists");
 			$('#signup').attr("disabled", true);
-
 		} else {
 			$('#signup').attr("disabled", false);
 		}

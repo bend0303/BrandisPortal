@@ -10,30 +10,27 @@
          http://www.springframework.org/schema/mvc/spring-mvc.xsd
          http://www.springframework.org/schema/beans
          http://www.springframework.org/schema/beans/spring-beans.xsd">
-
-	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
-
-	<bean id="messageSource"
-		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<property name="basename" value="/WEB-INF/messages" />
-	</bean>
-
-	<bean id="userService" class="il.co.brandis.services.UserManagerService" />
-
-	<!-- <bean class="il.co.brandis.controller.UserController" p:userService-ref="userService" 
-		p:validator-ref="userValidator" /> <bean id="userValidator" class="il.co.brandis.validators.UserValidator"/> -->
-
-	<context:component-scan base-package="il.co.brandis" />
+	
 	<mvc:annotation-driven />
 	<tx:annotation-driven />
-
+	
+	<context:component-scan base-package="il.co.brandis" />
+	
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+		up static resources in the ${webappRoot}/resources/ directory -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+	
+	<bean id="userService" class="il.co.brandis.services.UserManagerService" />
+	
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-
+	
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
 		p:location="/WEB-INF/jdbc.Properties" />
@@ -41,10 +38,6 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close" p:driverClassName="${jdbc.driverClassName}"
 		p:url="${jdbc.databaseurl}" p:username="${jdbc.username}" p:password="${jdbc.password}" />
-
-	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
-		up static resources in the ${webappRoot}/resources/ directory -->
-	<mvc:resources mapping="/resources/**" location="/resources/" />
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
