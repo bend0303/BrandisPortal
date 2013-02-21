@@ -20,8 +20,6 @@ public class Product {
 	private double productPrice;
 	private MultipartFile productImage;
 
-
-
 	public Product(String productName, String productDesc, double productPrice,
 			MultipartFile productImage) {
 		super();

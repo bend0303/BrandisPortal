@@ -39,19 +39,13 @@ public class DBProduct {
 		return productImage;
 	}
 
-
-
 	public void setProductImage(String productImage) {
 		this.productImage = productImage;
 	}
 
-
-
 	public DBProduct(int id) {
 		productId = id;
 	}
-
-
 
 	public DBProduct(String productName, String productDesc,
 			double productPrice, String productImage) {
@@ -61,8 +55,6 @@ public class DBProduct {
 		this.productPrice = productPrice;
 		this.productImage = productImage;
 	}
-
-
 
 	public DBProduct() {
 		super();

@@ -22,11 +22,12 @@ public class EncryptionUtil {
 			return source;
 		}
 		try {
-			MessageDigest mdEnc = MessageDigest.getInstance("MD5"); // Encryption
-																	// algorithm
+			/*Getting encryption algorithm*/
+			MessageDigest mdEnc = MessageDigest.getInstance("MD5"); 
+																	
 			mdEnc.update(source.getBytes(), 0, source.length());
-			md5 = new BigInteger(1, mdEnc.digest()).toString(16); // Encrypted
-																	// string
+			md5 = new BigInteger(1, mdEnc.digest()).toString(16); 
+																	
 		} catch (Exception ex) {
 			return null;
 		}

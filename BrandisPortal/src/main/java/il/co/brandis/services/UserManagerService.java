@@ -53,15 +53,17 @@ public class UserManagerService implements IUserManagerService {
 	public boolean deleteUser(User user) {
 		return UsersDAO.delUser(user);
 	}
-
-	public  String performUserLogin(String userIdS, ModelMap modelMap, String destPath) {
-		int userId = Integer.parseInt(userIdS);
+	/**
+	 * Performing user login process
+	*/
+	public String performUserLogin(String userID, ModelMap modelMap, String destPath) {
+		int userId = Integer.parseInt(userID);
 		User user = getUserByID(userId);
 		if (user != null) {
 			modelMap.addAttribute("userPersist", user);
 			return "redirect:" + destPath;
 		}
-		return null;
+		return "error";
 	}
 
 

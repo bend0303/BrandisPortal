@@ -50,6 +50,9 @@ public class Cart {
 		balance += item.getPrice();
 	}
 	
+	/**
+	 * Getting cart item index by product ID
+	*/
 	public int getIndexByID(int ID){
 		int i;
 		boolean found = false;
