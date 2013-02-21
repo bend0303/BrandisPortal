@@ -59,9 +59,9 @@ public class UserManagerService implements IUserManagerService {
 		User user = getUserByID(userId);
 		if (user != null) {
 			modelMap.addAttribute("userPersist", user);
-			return "redirect:" + destPath;
+			return destPath;
 		}
-		return null;
+		return "redirect:/user/index";
 	}
 
 
