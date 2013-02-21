@@ -28,6 +28,9 @@ public class UserDAO implements IUserDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	/**
+	 * Validating user by email and password
+	*/
 	@Override
 	@Transactional(readOnly = true)
 	public List<User> validateLogin(String email, String password) {
@@ -39,20 +42,28 @@ public class UserDAO implements IUserDAO {
 				.setString("email", email).setString("password", password)
 				.list();
 		return users;
-		//
 	}
 
+	/**
+	 * Adding user to DB
+	*/
 	public void addUser(User user) {
 		sessionFactory.getCurrentSession().saveOrUpdate(user);
 		logger.debug("User has been added");
 	}
 
+	/**
+	 * Deleting user from DB
+	*/
 	public boolean delUser(User user) {
 		sessionFactory.getCurrentSession().delete(user);
 		logger.debug("User has been deleted");
 		return true;
 	}
 
+	/**
+	 * Getting user from DB using ID
+	*/
 	public User getUser(int uId) {
 		User user = (User) sessionFactory.getCurrentSession().get(User.class,
 				uId);
@@ -60,6 +71,9 @@ public class UserDAO implements IUserDAO {
 		return user;
 	}
 	
+	/**
+	 * Getting users from DB
+	*/
 	@Transactional(readOnly = true)
 	public List<User> getUsers() {
 

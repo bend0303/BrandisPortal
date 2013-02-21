@@ -17,14 +17,26 @@ import il.co.brandis.entities.*;
  * The IUserDAO interface represents the interface for user DAO.
 */
 public interface IUserDAO {
-
+	
+	/**
+	 * Adding user to DB
+	*/
 	public void addUser(User user);
 
 	public List<User> validateLogin(String user, String password);
-
+	
+	/**
+	 * Deleting user from DB
+	*/
 	public boolean delUser(User user);
-
+	
+	/**
+	 * Getting user from DB using ID
+	*/
 	public User getUser(int uId);
-
+	
+	/**
+	 * Getting users from DB
+	*/
 	public List<User> getUsers();
 }

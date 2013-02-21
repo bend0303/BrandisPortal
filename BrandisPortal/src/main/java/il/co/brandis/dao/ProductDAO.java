@@ -27,19 +27,31 @@ public class ProductDAO implements IProductDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	/**
+	 * Adding product to DB
+	*/
 	public void addProduct(DBProduct ob) {
 		sessionFactory.getCurrentSession().save(ob);
 	}
 
+	/**
+	 * Deleting product from DB
+	*/
 	public void delProduct(int pId) {
 		sessionFactory.getCurrentSession().delete(new DBProduct(pId));
 	}
 
+	/**
+	 * Getting product from DB by id
+	*/
 	public DBProduct getProductById(int pId) {
 		return (DBProduct) sessionFactory.getCurrentSession().get(DBProduct.class,
 				pId);
 	}
 
+	/**
+	 * Getting products from DB
+	*/
 	public List<DBProduct> getProducts() {
 		@SuppressWarnings("unchecked")
 		List<DBProduct> products = (List<DBProduct>) sessionFactory
