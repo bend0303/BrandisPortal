@@ -31,73 +31,20 @@ import il.co.brandis.entities.User;
 import il.co.brandis.services.IProductManagerService;
 
 /**
- * The CartController class represents the controller which will handle all cart related actions.
-*/
+ * The CartController class represents the controller which will handle all cart
+ * related actions.
+ */
 @SessionAttributes({ "userPersist" })
 @Controller
 public class CartController {
+
 	@Autowired
 	private IProductManagerService productService;
 	static Logger logger = Logger.getLogger(CartController.class.getName());
 
-	@RequestMapping(value = "/cart/deleteitemfromcart", method = RequestMethod.POST)
-	public String deleteItemFromCart(HttpServletRequest req, ModelMap modelMap) {
-		String METHOD = "deleteItemFromCart() - ";
-		User user = (User) req.getSession().getAttribute("userPersist");
-		if (user == null) {
-			logger.warn(METHOD + "Anonymouse access attempt");
-			return "login";
-		}
-		Cart cart = user.getCart();
-		String singleDelete = req.getParameter("singleDelete");
-		if (singleDelete != null && !singleDelete.isEmpty()) {
-			int index = cart.getIndexByID(Integer.parseInt(singleDelete));
-			cart.setBalance(cart.getBalance()
-					- cart.getItems().get(index).getPrice());
-			cart.getItems().remove(index);
-			logger.info(user.getEmail() + "Removed item #"
-					+ singleDelete.toString() + " from the cart");
-		}
-		return "redirect:/cart/showcart";
-	}
-
-	@RequestMapping(value = "/cart/additemtocart", method = RequestMethod.POST)
-	public String addItem(HttpServletRequest req,
-			@RequestParam("idForCart") String id, ModelMap modelMap) {
-		String METHOD = "addItem() - ";
-		int index;
-		User user = (User) req.getSession().getAttribute("userPersist");
-		if (user == null) {
-			logger.warn(METHOD + "Anonymouse access attempt");
-			return "login";
-		}
-		Cart cart = user.getCart();
-
-		int amount = Integer.parseInt(req.getParameter("amount" + id));
-		DBProduct product = productService.getProductById(Integer.parseInt(id));
-
-		// (ShoppingCart.CartEntry) contents.get(product)
-		index = cart.getIndexByID(Integer.parseInt(id));
-		if (index == -1) {
-			CartItem item = new CartItem(product, amount);
-			user.getCart().addItem(item);
-			logger.info(user.getEmail() + "Added item #" + id.toString()
-					+ " to the cart");
-		} else {
-			int pAmount = cart.getItems().get(index).getAmount();
-			CartItem item = cart.getItems().get(index);
-			item.setAmount(pAmount + amount);
-			item.setPrice(item.getProduct().getProductPrice()
-					* item.getAmount());
-			cart.setBalance(cart.getBalance()
-					+ item.getProduct().getProductPrice() * amount);
-			logger.info(user.getEmail() + "Added item #" + id.toString()
-					+ " to the cart");
-		}
-
-		return "redirect:/products/products";
-	}
-
+	/**
+	 * Showing the cart
+	 */
 	@RequestMapping(value = "/cart/showcart")
 	public String showCart(HttpServletRequest req, ModelMap modelMap) {
 		String METHOD = "addItem() - ";
@@ -113,6 +60,9 @@ public class CartController {
 		return "cart";
 	}
 
+	/**
+	 * Adding an item by id and amount using ajax
+	 */
 	@RequestMapping(value = "/cart/additemtocartajax", method = RequestMethod.GET)
 	public void addItemAjax(HttpServletRequest req, @RequestParam String id,
 			@RequestParam int amount) {
@@ -122,18 +72,18 @@ public class CartController {
 		if (user == null) {
 			logger.warn(METHOD + "Anonymouse access attempt");
 		}
-
 		Cart cart = user.getCart();
-
 		DBProduct product = productService.getProductById(Integer.parseInt(id));
 		index = cart.getIndexByID(Integer.parseInt(id));
-
+		/* Item is not found in the cart */
 		if (index == -1) {
 			CartItem item = new CartItem(product, amount);
 			user.getCart().addItem(item);
 			logger.info(user.getEmail() + "Added item #" + id.toString()
 					+ " to the cart");
-		} else {
+		} 
+		/* Item is already on cart and needs to be updated */
+		else {
 			int pAmount = cart.getItems().get(index).getAmount();
 			CartItem item = cart.getItems().get(index);
 			item.setAmount(pAmount + amount);
@@ -147,6 +97,9 @@ public class CartController {
 
 	}
 
+	/**
+	 * Deleting an item from the cart by id received using ajax
+	 */
 	@RequestMapping(value = "/cart/deleteitemfromcartajax", method = RequestMethod.GET)
 	public void deleteItemFromCartAjax(HttpServletRequest req,
 			@RequestParam String id) {
@@ -154,21 +107,24 @@ public class CartController {
 		User user = (User) req.getSession().getAttribute("userPersist");
 		Cart cart = user.getCart();
 		int index = cart.getIndexByID(Integer.parseInt(id));
-		
+		/* updating cart balance */
 		cart.setBalance(cart.getBalance()
 				- cart.getItems().get(index).getPrice());
 		cart.getItems().remove(index);
-		logger.info(user.getEmail() + "Removed item #"
-				+ id + " from the cart");
+		logger.info(user.getEmail() + "Removed item #" + id + " from the cart");
 
 	}
-	
+
+	/**
+	 * Retrieving cart from session
+	 */
 	@RequestMapping(value = "/cart/getcart", method = RequestMethod.GET)
 	public @ResponseBody
 	Cart getCart(HttpServletRequest req) {
 		String METHOD = "getCart() - ";
 		User user = (User) req.getSession().getAttribute("userPersist");
 		Cart cart = user.getCart();
+		logger.info(user.getEmail() + "Retrieved cart from session");
 		return cart;
 	}
 }
