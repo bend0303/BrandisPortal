@@ -9,6 +9,7 @@
  */
 package il.co.brandis.controller;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -18,12 +19,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class GeneralController {
 
+	static Logger logger = Logger.getLogger(CartController.class.getName());
+	
+	/**
+	 * Redirecting any inner unmapped request to error page
+	*/
 	@RequestMapping(value="/?*/?*")
 	public String innerErrorPage() {
 		return "redirect:/error";
 	}
+	
+	/**
+	 * Redirecting any unmapped request to error page
+	*/
 	@RequestMapping(value="/?*")
 	public String errorPage() {
+		logger.info("Unmapped request has received directing to error page");
 		return "generalerror";
 	}
 }
