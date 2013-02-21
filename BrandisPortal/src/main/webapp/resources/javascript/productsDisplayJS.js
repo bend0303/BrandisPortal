@@ -10,8 +10,9 @@ var productslocal;
 var Arrays = new Array();
 $(document)
 		.ready(
-
+				
 				function() {
+					$.msg({ content: 'blah blah' });
 					$('#productList').sweetPages({
 						perPage : 5
 					}); // number is ammount of products in the pager
@@ -172,8 +173,8 @@ $(document)
 						return false;
 
 					});
-
 				});
+
 
 function include(arr, obj) {
 	for ( var i = 0; i < arr.length; i++) {
