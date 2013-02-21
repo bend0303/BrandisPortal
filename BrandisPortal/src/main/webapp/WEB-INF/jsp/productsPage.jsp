@@ -8,7 +8,7 @@
 	href="<c:url value="/resources/css/pageWrapper.css"/>" />
 <meta http-equiv="Content-Type"
 	content="text/html; charset=windows-1255">
-<title>Insert title here</title>
+<title>Products Page</title>
 </head>
 <body>
 

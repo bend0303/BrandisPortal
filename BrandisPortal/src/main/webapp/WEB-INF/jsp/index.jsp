@@ -52,8 +52,7 @@
 				id="tologin"></a>
 			<div id="wrapper">
 				<div id="login" class="animate form">
-					<form action="/brandis/user/login" autocomplete="on"
-						modelAttribute="newUser">
+					<form action="/brandis/user/login" autocomplete="on" modelAttribute="newUser">
 						<h1>Log in</h1>
 						<p>
 							<label for="email" data-icon="e"> Your email address</label> <input
@@ -65,11 +64,7 @@
 								Your password </label> <input id="password" name="pass"
 								required="required" type="password" placeholder="eg. X8df!90EO" />
 						</p>
-						<p class="keeplogin">
-							<input type="checkbox" name="loginkeeping" id="loginkeeping"
-								value="loginkeeping" /> <label for="loginkeeping">Remember
-								me</label>
-						</p>
+						
 						<p class="login button">
 							<input type="submit" value="Login" />
 						</p>
