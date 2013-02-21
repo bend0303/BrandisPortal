@@ -15,7 +15,7 @@ $(document)
 					username = document.getElementById("userFullName").value;
 					$.msg({ content: 'Welcome ' + username + '!'});
 					$('#productList').sweetPages({
-						perPage : 5
+						perPage : 4
 					}); // number is ammount of products in the pager
 					// page links in the ul, but we need them in the main
 					// container:
@@ -59,12 +59,12 @@ $(document)
 																$(
 																		"#slidingTopFooterLeft")
 																		.html(
-																				'<img src="../../resources/images/arrow-up.png" alt="Hide Basket" /> <a href="no-js.htm" onclick="return false;" class="slidingTopTrigger">Hide Basket</a>');
+																				'<img src="http://localhost:8080/brandis/resources/images/arrow-up.png" alt="Hide Basket" /> <a href="no-js.htm" onclick="return false;" class="slidingTopTrigger">Hide Basket</a>');
 															} else {
 																$(
 																		"#slidingTopFooterLeft")
 																		.html(
-																				'<img src="../../resources/images/arrow-down.png" alt="Show Basket" /> <a href="no-js.htm" onclick="return false;" class="slidingTopTrigger">Show Basket</a>');
+																				'<img src="http://localhost:8080/brandis/resources/images/arrow-down.png" alt="Show Basket" /> <a href="no-js.htm" onclick="return false;" class="slidingTopTrigger">Show Basket</a>');
 															}
 														});
 									});
@@ -275,12 +275,14 @@ function pushToCart(Arrays, itemprice, thisID, itemname, itemamount ){
 			// Looping through all the newly created pages:
 
 			var elem = $(this);
-
+			var liheight = 0;
 			var tmpHeight = 0;
 			elem.find('li').each(function() {
-				tmpHeight += $(this).data('height');
+				liheight =  $(this).data('height');
+				tmpHeight +=liheight;
 			});
-
+			
+			tmpHeight = tmpHeight - liheight;
 			if (tmpHeight > maxHeight)
 				maxHeight = tmpHeight;
 
@@ -292,7 +294,7 @@ function pushToCart(Arrays, itemprice, thisID, itemname, itemamount ){
 		swPage.wrapAll('<div class="swSlider" />');
 
 		// Setting the height of the ul to the height of the tallest page:
-		ul.height(maxHeight);
+		ul.height(maxHeight + 20);
 
 		var swSlider = ul.find('.swSlider');
 		swSlider.append('<div class="clear" />').width(totalWidth);

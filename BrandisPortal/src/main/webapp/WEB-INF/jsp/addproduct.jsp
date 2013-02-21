@@ -43,7 +43,7 @@
 				<label class="col1desc">Description:&nbsp;&nbsp;</label> <span class="col2desc"> <form:textarea path="productDesc" cols="20" class="textarea" rows="4" tabindex="4" /></span>
 			</div>
 			<div align="center" class="submit">
-				<input type="image" src="../../resources/images/addproduct/b_send.gif" alt="send" width="52" height="19" />
+				<input type="image" src="<c:url value="/resources/images/addproduct/b_send.gif"/>" alt="send" width="52" height="19" />
 			</div>
 		</form:form>
 	</div>
