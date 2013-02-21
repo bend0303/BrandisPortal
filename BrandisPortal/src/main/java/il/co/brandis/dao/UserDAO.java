@@ -74,6 +74,7 @@ public class UserDAO implements IUserDAO {
 	/**
 	 * Getting users from DB
 	*/
+	@Override
 	@Transactional(readOnly = true)
 	public List<User> getUsers() {
 
