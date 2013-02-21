@@ -82,7 +82,7 @@ $(document)
 										var itemamount = $(this).parent().find(
 												'.spinner').attr(
 												'aria-valuenow');
-
+										if (itemamount == null) return;
 										if (include(Arrays, thisID)) {
 											var price = $('#each-' + thisID)
 													.children(".shopp-price")
