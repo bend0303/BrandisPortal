@@ -48,14 +48,14 @@ public class UserManagerService implements IUserManagerService {
 		return UsersDAO.getUser(id);
 	}
 	
-
-	@Override
+	@Transactional
 	public boolean deleteUser(User user) {
 		return UsersDAO.delUser(user);
 	}
 	/**
 	 * Performing user login process
 	*/
+	@Transactional
 	public String performUserLogin(String userID, ModelMap modelMap, String destPath) {
 		int userId = Integer.parseInt(userID);
 		User user = getUserByID(userId);

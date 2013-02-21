@@ -89,7 +89,8 @@ public class UserController {
 	public String registerForm(ModelMap modelMap, HttpServletRequest req) {
 		Cookie cookie = CookiesUtil.getUserCookie(req);
 		if (cookie != null) {
-			return userService.performUserLogin(cookie.getValue(), modelMap, "/products/showproducts");	
+			String productsURI = "redirect:/products/showproducts";
+			return userService.performUserLogin(cookie.getValue(), modelMap, productsURI);	
 		}
 		modelMap.addAttribute("newUser", new User());
 		return "index";
