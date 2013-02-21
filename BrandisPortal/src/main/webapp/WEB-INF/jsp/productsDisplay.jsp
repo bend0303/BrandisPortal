@@ -26,7 +26,7 @@
 				<td id="headerTD">
 					<p id="pageTitle">JavaEE Final Project</p>
 				</td>
-				<td id="menuTD"><a href="/user/logout/">Logout</a></td>
+				<td id="menuTD"><a href="/brandis/user/logout/">Logout</a></td>
 			</tr>
 			<tr>
 				<td>

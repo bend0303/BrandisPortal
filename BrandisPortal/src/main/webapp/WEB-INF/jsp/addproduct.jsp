@@ -16,7 +16,7 @@
 <body>
 
 	<form:form modelAttribute="newProduct" method="post"
-		action="/products/addproduct" enctype="multipart/form-data">
+		action="/brandis/products/addproduct" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td>Product's Name :</td>
@@ -40,7 +40,7 @@
 		</table>
 	</form:form>
 	<h3>
-		<a href="/user/logout">Logout</a>
+		<a href="/brandis/user/logout">Logout</a>
 	</h3>
 </body>
 </html>

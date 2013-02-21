@@ -34,6 +34,7 @@ import il.co.brandis.services.IProductManagerService;
  * The CartController class represents the controller which will handle all cart
  * related actions.
  */
+@RequestMapping("/cart")
 @SessionAttributes({ "userPersist" })
 @Controller
 public class CartController {
@@ -45,7 +46,7 @@ public class CartController {
 	/**
 	 * Showing the cart
 	 */
-	@RequestMapping(value = "/cart/showcart")
+	@RequestMapping(value = "/showcart")
 	public String showCart(HttpServletRequest req, ModelMap modelMap) {
 		String METHOD = "addItem() - ";
 		User user = (User) req.getSession().getAttribute("userPersist");
@@ -63,7 +64,7 @@ public class CartController {
 	/**
 	 * Adding an item by id and amount using ajax
 	 */
-	@RequestMapping(value = "/cart/additemtocartajax", method = RequestMethod.GET)
+	@RequestMapping(value = "/additemtocartajax", method = RequestMethod.GET)
 	public void addItemAjax(HttpServletRequest req, @RequestParam String id,
 			@RequestParam int amount) {
 		String METHOD = "addItem() - ";
@@ -100,7 +101,7 @@ public class CartController {
 	/**
 	 * Deleting an item from the cart by id received using ajax
 	 */
-	@RequestMapping(value = "/cart/deleteitemfromcartajax", method = RequestMethod.GET)
+	@RequestMapping(value = "/deleteitemfromcartajax", method = RequestMethod.GET)
 	public void deleteItemFromCartAjax(HttpServletRequest req,
 			@RequestParam String id) {
 		String METHOD = "deleteItemFromCart() - ";
@@ -118,7 +119,7 @@ public class CartController {
 	/**
 	 * Retrieving cart from session
 	 */
-	@RequestMapping(value = "/cart/getcart", method = RequestMethod.GET)
+	@RequestMapping(value = "/getcart", method = RequestMethod.GET)
 	public @ResponseBody
 	Cart getCart(HttpServletRequest req) {
 		String METHOD = "getCart() - ";

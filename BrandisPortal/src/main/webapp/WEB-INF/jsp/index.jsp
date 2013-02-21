@@ -52,7 +52,7 @@
 				id="tologin"></a>
 			<div id="wrapper">
 				<div id="login" class="animate form">
-					<form action="/user/login" autocomplete="on"
+					<form action="/brandis/user/login" autocomplete="on"
 						modelAttribute="newUser">
 						<h1>Log in</h1>
 						<p>
@@ -80,7 +80,7 @@
 				</div>
 				<div id="register" class="animate form">
 					<form:form modelAttribute="newUser" method="post" id="registerform"
-						action="/user/registration" autocomplete="on">
+						action="/brandis/user/registration" autocomplete="on">
 						<h1>Sign up</h1>
 						<p>
 							<label for="email" class="email" data-icon="e">E-Mail:</label>

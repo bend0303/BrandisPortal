@@ -38,6 +38,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 /**
  * The ProductController class represents the controller which will handle the product related actions.
 */
+@RequestMapping("/products")
 @SessionAttributes({ "userPersist" })
 @Controller
 public class ProductController {
@@ -46,14 +47,14 @@ public class ProductController {
 	
 	@Autowired
 	private IUserManagerService userService;
-	private String saveDirectory = "../upload/images/";
+	private String saveDirectory = "C:/Users/Or Guz/Documents/Programming/Java/Brandis/BrandisPortal/BrandisPortal/src/main/webapp/resources/images";
 	
 	protected static Logger logger = Logger.getLogger(ProductController.class.getName());
 
 	/**
 	 * Creating new product object and directing to JSP
 	*/
-	@RequestMapping(value = "/products/addproductform")
+	@RequestMapping(value = "/addproductform")
 	public String registerForm(ModelMap modelMap) {
 		modelMap.addAttribute("newProduct", new Product());
 		return "addproduct";
@@ -62,7 +63,7 @@ public class ProductController {
 	/**
 	 * Adding a new product received using model attribute
 	*/
-	@RequestMapping(value = "/products/addproduct")
+	@RequestMapping(value = "/addproduct")
 	public String addProduct(@ModelAttribute(value="newProduct") Product product, ModelMap modelMap) throws IllegalStateException, IOException {
 		StringBuilder path = (new StringBuilder(saveDirectory)).append(product.getProductImage().getOriginalFilename());
 		/* Saving product's picture*/
@@ -77,7 +78,7 @@ public class ProductController {
 	/**
 	 * Adding a new product received using model attribute
 	*/
-	@RequestMapping(value = "/products/products")
+	@RequestMapping(value = "/showproducts")
 	public String showProducts(HttpServletRequest req, ModelMap modelMap) {
 		String METHOD = "showProducts()";
 		User user = (User) req.getSession().getAttribute("userPersist");
@@ -103,7 +104,7 @@ public class ProductController {
 	/**
 	 * Getting product list using ajax
 	*/
-	@RequestMapping(value="/products/getproducts",headers="Accept=*/*", method = RequestMethod.GET) 
+	@RequestMapping(value="/getproducts",headers="Accept=*/*", method = RequestMethod.GET) 
 	public @ResponseBody List<DBProduct> getProductsAjax() {
 		List<DBProduct> products = productService.getProducts();
 		return products;

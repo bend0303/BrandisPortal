@@ -21,7 +21,7 @@
 <body class="ui-mobile-viewport ui-overlay-c">
 
 	<form:form modelAttribute="newUser" method="post" id="registerform"
-		action="/user/registration" >
+		action="/brandis/user/registration" >
 		<table>
 			<tr>
 				<td>User Name :</td>
@@ -52,7 +52,7 @@
 	</form:form>
 
 		<h3>
-		<a href="/user/loginform">Login</a>
+		<a href="/brandis/user/loginform">Login</a>
 	</h3>
 </body>
 

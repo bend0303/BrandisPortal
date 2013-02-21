@@ -14,7 +14,7 @@
 
 <body>
 	<div class="wrapperDiv">
-		<form action="/cart/deleteitemfromcart" method="post">
+		<form action="/brandis/cart/deleteitemfromcart" method="post">
 			<table class="productsTable" cellspacing="0"
 				summary="Product List Table">
 				<caption>Cart</caption>

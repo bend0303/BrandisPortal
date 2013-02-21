@@ -62,7 +62,7 @@ public class UserController {
 			modelMap.addAttribute("userPersist", loginlist.get(0));
 			CookiesUtil.userCookieCreation(req, res, loginlist.get(0));
 			logger.info("Login authentication succeed: " + email);
-			return "redirect:/products/products";
+			return "redirect:/products/showproducts";
 		} else {
 			logger.warn("Login authentication failed: " + email);
 			return "redirect:/user/index";
@@ -89,7 +89,7 @@ public class UserController {
 	public String registerForm(ModelMap modelMap, HttpServletRequest req) {
 		Cookie cookie = CookiesUtil.getUserCookie(req);
 		if (cookie != null) {
-			return userService.performUserLogin(cookie.getValue(), modelMap, "/products/products");	
+			return userService.performUserLogin(cookie.getValue(), modelMap, "/products/showproducts");	
 		}
 		modelMap.addAttribute("newUser", new User());
 		return "index";
