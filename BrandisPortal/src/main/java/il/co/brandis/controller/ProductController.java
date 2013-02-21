@@ -47,7 +47,9 @@ public class ProductController {
 	
 	@Autowired
 	private IUserManagerService userService;
-	private String saveDirectory = "c:/temp/";
+
+	private String saveDirectory = "F:/images/";
+
 	
 	protected static Logger logger = Logger.getLogger(ProductController.class.getName());
 
