@@ -48,6 +48,9 @@ public class UserController {
 	protected static Logger logger = Logger.getLogger(UserController.class
 			.getName());
 
+	/**
+	 * Performing user login authentication from DB
+	*/
 	@RequestMapping("/login")
 	public String loginAuthentication(HttpServletRequest req, HttpServletResponse res, ModelMap modelMap) {
 
@@ -58,16 +61,18 @@ public class UserController {
 		if (loginlist.size() == 1) {
 			modelMap.addAttribute("userPersist", loginlist.get(0));
 			CookiesUtil.userCookieCreation(req, res, loginlist.get(0));
-			logger.info("Loggin authentication succeed: " + email);
+			logger.info("Login authentication succeed: " + email);
 			return "redirect:/products/products";
 		} else {
-			logger.warn("Loggin authentication failed: " + email);
+			logger.warn("Login authentication failed: " + email);
 			return "redirect:/user/index";
 		}
 	}
 
 
-
+	/**
+	 * Performing logout including cookie handling and session invalidation
+	*/
 	@RequestMapping("/logout")
 	public String logout(ModelMap modelMap, HttpSession session, HttpServletResponse res,HttpServletRequest req) {
 		session.invalidate();
@@ -77,6 +82,9 @@ public class UserController {
 		return "redirect:/user/index";
 	}
 
+	/**
+	 * Creating new user before directing to register page
+	*/
 	@RequestMapping(value = "/index")
 	public String registerForm(ModelMap modelMap, HttpServletRequest req) {
 		Cookie cookie = CookiesUtil.getUserCookie(req);
@@ -88,26 +96,33 @@ public class UserController {
 	}
 
 
-
+	/**
+	 * Handling user registration - success or failure
+	*/
 	@RequestMapping(value = "/registration")
 	public String registerUser(@Valid @ModelAttribute(value = "newUser") User user,
 			BindingResult result, ModelMap modelMap) {
 		if (result.hasErrors()) {
+			logger.warn("Register failed for: " + user.getEmail());
 			return "redirect:/user/index";
 		} else {
 			userService.addUser(user);
-			logger.info("Loggin register succeed: " + user.getEmail());
+			logger.info("Register succeed: " + user.getEmail());
 		}
 		modelMap.remove("newUser");
 		return "redirect:/user/index";
 	}
 
+	/**
+	 * Checking e-mail availability for new user
+	*/
 	@RequestMapping(value = "/availability", method = RequestMethod.GET)
 	public @ResponseBody
 	String getAvailability(@RequestParam String email) {
 		List<User> users = userService.getUsers();
 		for (User u : users) {
 			if (u.getEmail().equals(email)) {
+				/* E-mail is already in use*/
 				return "false";
 			}
 		}

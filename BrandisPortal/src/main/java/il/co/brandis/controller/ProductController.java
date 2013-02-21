@@ -50,16 +50,22 @@ public class ProductController {
 	
 	protected static Logger logger = Logger.getLogger(ProductController.class.getName());
 
-	
+	/**
+	 * Creating new product object and directing to JSP
+	*/
 	@RequestMapping(value = "/products/addproductform")
 	public String registerForm(ModelMap modelMap) {
 		modelMap.addAttribute("newProduct", new Product());
 		return "addproduct";
 	}
 	
+	/**
+	 * Adding a new product received using model attribute
+	*/
 	@RequestMapping(value = "/products/addproduct")
 	public String addProduct(@ModelAttribute(value="newProduct") Product product, ModelMap modelMap) throws IllegalStateException, IOException {
 		StringBuilder path = (new StringBuilder(saveDirectory)).append(product.getProductImage().getOriginalFilename());
+		/* Saving product's picture*/
 		FileUploaderUtil.saveFile(product.getProductImage(), saveDirectory);
 		DBProduct dbProduct = new DBProduct(product.getProductName(), product.getProductDesc(), product.getProductPrice(), path.toString());
 		productService.addProduct(dbProduct);
@@ -68,6 +74,9 @@ public class ProductController {
 		return "redirect:/products/addproductform";
 	}
 
+	/**
+	 * Adding a new product received using model attribute
+	*/
 	@RequestMapping(value = "/products/products")
 	public String showProducts(HttpServletRequest req, ModelMap modelMap) {
 		String METHOD = "showProducts()";
@@ -91,7 +100,10 @@ public class ProductController {
 		return "productsPage";
 	}
 	
-	@RequestMapping(value="/products/getproducts",headers="Accept=*/*", method = RequestMethod.GET) // Using for ajax call
+	/**
+	 * Getting product list using ajax
+	*/
+	@RequestMapping(value="/products/getproducts",headers="Accept=*/*", method = RequestMethod.GET) 
 	public @ResponseBody List<DBProduct> getProductsAjax() {
 		List<DBProduct> products = productService.getProducts();
 		return products;
