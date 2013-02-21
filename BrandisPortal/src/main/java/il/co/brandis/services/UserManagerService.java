@@ -17,6 +17,7 @@ import il.co.brandis.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.ModelMap;
 
 /**
  * The UserManagerService class represents the user's services which connects the controller to DAOs
@@ -27,7 +28,7 @@ public class UserManagerService implements IUserManagerService {
 	@Autowired
 	private IUserDAO UsersDAO;
 
-	@Override
+	@Transactional
 	public List<User> validateLogin(String email, String password) {
 		return UsersDAO.validateLogin(email, password);
 	}
@@ -37,18 +38,31 @@ public class UserManagerService implements IUserManagerService {
 		UsersDAO.addUser(user);
 	}
 
-	@Override
+	@Transactional
 	public List<User> getUsers() {
 		return UsersDAO.getUsers();
 	}
 
-	@Override
+	@Transactional
 	public User getUserByID(int id) {
 		return UsersDAO.getUser(id);
 	}
 	
+
 	@Override
 	public boolean deleteUser(User user) {
 		return UsersDAO.delUser(user);
 	}
+
+	public  String performUserLogin(String userIdS, ModelMap modelMap, String destPath) {
+		int userId = Integer.parseInt(userIdS);
+		User user = getUserByID(userId);
+		if (user != null) {
+			modelMap.addAttribute("userPersist", user);
+			return "redirect:" + destPath;
+		}
+		return null;
+	}
+
+
 }

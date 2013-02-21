@@ -11,9 +11,12 @@ package il.co.brandis.controller;
 
 import il.co.brandis.entities.User;
 import il.co.brandis.services.IUserManagerService;
+import il.co.brandis.utils.CookiesUtil;
 import il.co.brandis.utils.EncryptionUtil;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -46,7 +49,7 @@ public class UserController {
 			.getName());
 
 	@RequestMapping("/login")
-	public String loginAuthentication(HttpServletRequest req, ModelMap modelMap) {
+	public String loginAuthentication(HttpServletRequest req, HttpServletResponse res, ModelMap modelMap) {
 
 		String email = req.getParameter("email");
 		String password = req.getParameter("pass");
@@ -54,27 +57,37 @@ public class UserController {
 				EncryptionUtil.encrypt(password));
 		if (loginlist.size() == 1) {
 			modelMap.addAttribute("userPersist", loginlist.get(0));
+			CookiesUtil.userCookieCreation(req, res, loginlist.get(0));
 			logger.info("Loggin authentication succeed: " + email);
 			return "redirect:/products/products";
 		} else {
 			logger.warn("Loggin authentication failed: " + email);
 			return "redirect:/user/index";
 		}
-
 	}
 
-	@RequestMapping("/logout")
-	public String logout(HttpSession session) {
-		session.invalidate();
-		return "index";
 
+
+	@RequestMapping("/logout")
+	public String logout(ModelMap modelMap, HttpSession session, HttpServletResponse res,HttpServletRequest req) {
+		session.invalidate();
+		Cookie cookie = CookiesUtil.getUserCookie(req);
+		if (cookie != null) 
+			CookiesUtil.removeUserCookie(res, cookie);
+		return "redirect:/user/index";
 	}
 
 	@RequestMapping(value = "/index")
-	public String registerForm(ModelMap modelMap) {
+	public String registerForm(ModelMap modelMap, HttpServletRequest req) {
+		Cookie cookie = CookiesUtil.getUserCookie(req);
+		if (cookie != null) {
+			return userService.performUserLogin(cookie.getValue(), modelMap, "/products/products");	
+		}
 		modelMap.addAttribute("newUser", new User());
 		return "index";
 	}
+
+
 
 	@RequestMapping(value = "/registration")
 	public String registerUser(@Valid @ModelAttribute(value = "newUser") User user,
