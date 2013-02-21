@@ -1,3 +1,12 @@
+/**
+ * @(#)UserController.java        22/02/2013
+ *
+ * Copyright 2013 OB Software Company, Inc. All Rights Reserved.
+ *
+ * This software is the proprietary information of OB Software Company, Inc. 
+ * Use is subject to license terms.
+ *
+ */
 package il.co.brandis.controller;
 
 import il.co.brandis.entities.User;
@@ -24,6 +33,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.ui.ModelMap;
 
+/**
+ * The UserController class represents the controller which will handle the user related actions.
+*/
 @RequestMapping("/user")
 @SessionAttributes({ "userPersist" })
 @Controller

@@ -1,3 +1,12 @@
+/**
+ * @(#)ProductController.java        22/02/2013
+ *
+ * Copyright 2013 OB Software Company, Inc. All Rights Reserved.
+ *
+ * This software is the proprietary information of OB Software Company, Inc. 
+ * Use is subject to license terms.
+ *
+ */
 package il.co.brandis.controller;
 
 import il.co.brandis.entities.Cart;
@@ -25,6 +34,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.google.gson.Gson;
 
+/**
+ * The ProductController class represents the controller which will handle the product related actions.
+*/
 @SessionAttributes({ "userPersist" })
 @Controller
 public class ProductController {

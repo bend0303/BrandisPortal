@@ -1,3 +1,12 @@
+/**
+ * @(#)User.java        22/02/2013
+ *
+ * Copyright 2013 OB Software Company, Inc. All Rights Reserved.
+ *
+ * This software is the proprietary information of OB Software Company, Inc. 
+ * Use is subject to license terms.
+ *
+ */
 package il.co.brandis.entities;
 
 import il.co.brandis.utils.EncryptionUtil;
@@ -13,8 +22,8 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 /**
- * User domain test
- */
+ * The User class represents the client which uses Brandis
+*/
 @Entity
 @Table(name = "USERS")
 public class User {

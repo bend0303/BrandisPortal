@@ -1,3 +1,12 @@
+/**
+ * @(#)DBProduct.java        22/02/2013
+ *
+ * Copyright 2013 OB Software Company, Inc. All Rights Reserved.
+ *
+ * This software is the proprietary information of OB Software Company, Inc. 
+ * Use is subject to license terms.
+ *
+ */
 package il.co.brandis.entities;
 
 import javax.persistence.Column;
@@ -6,6 +15,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
 import javax.persistence.Id;
 
+/**
+ * The DBProduct class represents the Product as it will be saved in the DB 
+*/
 @Entity
 @Table(name = "PRODUCTS")
 public class DBProduct {

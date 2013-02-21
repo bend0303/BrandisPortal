@@ -1,7 +1,18 @@
+/**
+ * @(#)Product.java        22/02/2013
+ *
+ * Copyright 2013 OB Software Company, Inc. All Rights Reserved.
+ *
+ * This software is the proprietary information of OB Software Company, Inc. 
+ * Use is subject to license terms.
+ *
+ */
 package il.co.brandis.entities;
 
 import org.springframework.web.multipart.MultipartFile;
-
+/**
+ * The Product class represents the Product as in the client-side form
+*/
 public class Product {
 
 	private String productName;
