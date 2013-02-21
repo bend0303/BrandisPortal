@@ -17,7 +17,7 @@
 	height: 60px;
 	width: 100%;
 	z-index: 1;
-	background-color: rgb(53, 66, 66);	
+	background-color: rgb(53, 66, 66);
 }
 
 #pageTitle {
@@ -26,7 +26,16 @@
 	font-size: 21px;
 	text-align: left;
 	font-family: verdana, sans-serif;
-	line-height: 1;
+	padding-left: 10px;
+}
+
+#userNameDisplay { 
+	color: #61B8B2;
+	letter-spacing: 0pt;
+	word-spacing: 0pt;
+	font-size: 12px;
+	text-align: left;
+	font-family: arial, helvetica, sans-serif;
 	padding-left: 10px;
 }
 
@@ -44,7 +53,7 @@
 
 .singleProductDiv {
 	padding: 5px 10px 10px 13px;
-border-bottom: 1px solid #CCCCCC
+	border-bottom: 1px solid #CCCCCC
 }
 
 .price {
@@ -153,7 +162,6 @@ div#bottomBar {
 	width: 600px;
 }
 
-
 em {
 	font-style: normal;
 }
@@ -234,7 +242,7 @@ img.remove {
 	width: 650px;
 	overflow: hidden;
 	position: relative;
-	margin-left:0px; 
+	margin-left: 0px;
 	padding: 8px 0 0 0;
 	list-style-type: none;
 	/*	CSS3 inner shadow (the webkit one is commeted, because Google Chrome
@@ -296,10 +304,10 @@ a.swShowPage:hover,a.swShowPage.active {
 
 #slidingTopWrap {
 	position: absolute;
-    top: 100%;
-    right: 10%;
-    width: 250px;
-    z-index: 10;
+	top: 100%;
+	right: 10%;
+	width: 250px;
+	z-index: 10;
 	margin: 0 0 0 650px;
 	padding: 0;
 }
@@ -310,7 +318,7 @@ a.swShowPage:hover,a.swShowPage.active {
 	padding: 0;
 	border: #CCCCCC solid;
 	border-width: 0px 3px;
-	background-color:#EBEBEB;
+	background-color: #EBEBEB;
 }
 
 #slidingTopFooter {
@@ -341,7 +349,6 @@ a.swShowPage:hover,a.swShowPage.active {
 	text-decoration: underline;
 	color: #666666;
 }
-
 
 #slidingTopFooterLeft {
 	float: left;

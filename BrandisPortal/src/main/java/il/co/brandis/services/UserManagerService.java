@@ -8,6 +8,7 @@ import il.co.brandis.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.ModelMap;
 
 @Service("IUserManagerService")
 public class UserManagerService implements IUserManagerService {
@@ -15,7 +16,7 @@ public class UserManagerService implements IUserManagerService {
 	@Autowired
 	private IUserDAO UsersDAO;
 
-	@Override
+	@Transactional
 	public List<User> validateLogin(String email, String password) {
 		return UsersDAO.validateLogin(email, password);
 	}
@@ -25,13 +26,24 @@ public class UserManagerService implements IUserManagerService {
 		UsersDAO.addUser(user);
 	}
 
-	@Override
+	@Transactional
 	public List<User> getUsers() {
 		return UsersDAO.getUsers();
 	}
 
-	@Override
+	@Transactional
 	public User getUserByID(int id) {
 		return UsersDAO.getUser(id);
 	}
+	
+	public  String performUserLogin(String userIdS, ModelMap modelMap, String destPath) {
+		int userId = Integer.parseInt(userIdS);
+		User user = getUserByID(userId);
+		if (user != null) {
+			modelMap.addAttribute("userPersist", user);
+			return "redirect:" + destPath;
+		}
+		return null;
+	}
+
 }
