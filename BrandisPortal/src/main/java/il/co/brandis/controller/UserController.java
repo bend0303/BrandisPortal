@@ -1,4 +1,4 @@
-/**
+/*
  * @(#)UserController.java        22/02/2013
  *
  * Copyright 2013 OB Software Company, Inc. All Rights Reserved.
