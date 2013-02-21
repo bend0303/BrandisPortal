@@ -96,5 +96,6 @@
 			</c:forEach>
 		</ul>
 	</div>
+	<input type="hidden" id="userFullName" value="${userFullName}" />
 </body>
 </html>

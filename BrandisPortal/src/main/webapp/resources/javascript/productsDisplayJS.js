@@ -12,7 +12,8 @@ $(document)
 		.ready(
 				
 				function() {
-					$.msg({ content: 'blah blah' });
+					username = document.getElementById("userFullName").value;
+					$.msg({ content: 'Welcome ' + username + '!'});
 					$('#productList').sweetPages({
 						perPage : 5
 					}); // number is ammount of products in the pager
