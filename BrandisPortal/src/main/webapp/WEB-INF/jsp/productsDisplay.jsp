@@ -4,7 +4,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page language="java" contentType="text/html; charset=US-ASCII" pageEncoding="US-ASCII"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
@@ -15,18 +14,16 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/productsDisplay.css"/>" />
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
 <title>Products page</title>
-<script type="text/javascript">
-	
-</script>
+
 </head>
 <body>
 	<div id="uppderDockDiv">
-		<table width="100%">
+		<table width="100%" height="62px">
 			<tr>
 				<td id="headerTD">
 					<p id="pageTitle">JavaEE Final Project</p>
 				</td>
-				<td id="menuTD"><a href="/brandis/user/logout/">Logout</a></td>
+				<td id="menuTD"><a id="logout" href="/brandis/user/logout/">Logout</a>&nbsp;<a id="logout" href="/brandis/products/addproductform/">Add Products</a></td>
 			</tr>
 			<tr>
 				<td>
@@ -49,7 +46,7 @@
 			</div>
 			<div id="slidingTopFooter">
 				<div id="slidingTopFooterLeft">
-					<img alt="Show Basket" src="../resources/images/arrow-down.png" /> <a href="no-js.htm" class="slidingTopTrigger" onclick="return false;">Show Basket</a>
+					<img alt="Show Basket" src="../../resources/images/arrow-up.png" /> <a href="no-js.htm" class="slidingTopTrigger" onclick="return false;">Hide Basket</a>
 				</div>
 			</div>
 		</div>

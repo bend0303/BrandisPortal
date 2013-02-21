@@ -47,7 +47,7 @@ public class ProductController {
 	
 	@Autowired
 	private IUserManagerService userService;
-	private String saveDirectory = "C:/Users/Or Guz/Documents/Programming/Java/Brandis/BrandisPortal/BrandisPortal/src/main/webapp/resources/images";
+	private String saveDirectory = "D:/images/";
 	
 	protected static Logger logger = Logger.getLogger(ProductController.class.getName());
 
@@ -55,8 +55,20 @@ public class ProductController {
 	 * Creating new product object and directing to JSP
 	*/
 	@RequestMapping(value = "/addproductform")
-	public String registerForm(ModelMap modelMap) {
+	public String productsForm(HttpServletRequest req, ModelMap modelMap) {
+		String METHOD = "registerForm()";
+		
+		User user = (User) req.getSession().getAttribute("userPersist");
+		if (user == null) {
+			Cookie cookie = CookiesUtil.getUserCookie(req);
+			if (cookie != null) {
+				return userService.performUserLogin(cookie.getValue(), modelMap, "productsPage");
+			}
+			logger.warn(METHOD + "Anonymouse access attempt");
+			return "redirect:/user/index";
+		}
 		modelMap.addAttribute("newProduct", new Product());
+		modelMap.addAttribute("userFullName", user.getFullName());
 		return "addproduct";
 	}
 	

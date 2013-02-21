@@ -29,8 +29,6 @@ public class CookiesUtil {
 		}
 		if (cookie != null) {
 			cookie.setMaxAge(TWELEVE_HOURS);
-			cookie.setDomain(USER_COOKIE_DOMAIN);
-			cookie.setPath(USER_COOKIE_PATH);
 			res.addCookie(cookie);
 		} else {
 			cookie = new Cookie(USER_COOKIE_NAME, Integer.toString(user

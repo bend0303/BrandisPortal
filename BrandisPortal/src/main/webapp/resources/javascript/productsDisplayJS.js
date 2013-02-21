@@ -29,12 +29,12 @@ $(document)
 					// chars
 					// v
 
-					$.getJSON("/products/getproducts", function(data) {
+					$.getJSON("/brandis/products/getproducts", function(data) {
 						
 					});
 
 					
-					$.getJSON("/cart/getcart", function(cart) {
+					$.getJSON("/brandis/cart/getcart", function(cart) {
 						cart.items.forEach(function(item) {
 							pushToCart(Arrays, item.product.productPrice, item.product.productId, item.product.productName, item.amount );
 						});
@@ -57,12 +57,12 @@ $(document)
 																$(
 																		"#slidingTopFooterLeft")
 																		.html(
-																				'<img src="../resources/images/arrow-up.png" alt="Hide Basket" /> <a href="no-js.htm" onclick="return false;" class="slidingTopTrigger">Hide Basket</a>');
+																				'<img src="../../resources/images/arrow-up.png" alt="Hide Basket" /> <a href="no-js.htm" onclick="return false;" class="slidingTopTrigger">Hide Basket</a>');
 															} else {
 																$(
 																		"#slidingTopFooterLeft")
 																		.html(
-																				'<img src="../resources/images/arrow-down.png" alt="Show Basket" /> <a href="no-js.htm" onclick="return false;" class="slidingTopTrigger">Show Basket</a>');
+																				'<img src="../../resources/images/arrow-down.png" alt="Show Basket" /> <a href="no-js.htm" onclick="return false;" class="slidingTopTrigger">Show Basket</a>');
 															}
 														});
 									});
@@ -120,7 +120,7 @@ $(document)
 										
 										}
 
-										$.getJSON("/cart/additemtocartajax", {
+										$.getJSON("/brandis/cart/additemtocartajax", {
 											id : $(this).attr('id'),
 											amount : parseInt($(this).parent()
 													.find('.spinner').attr(
@@ -212,7 +212,7 @@ function pushToCart(Arrays, itemprice, thisID, itemname, itemamount ){
 							+ totalitemprice
 							+ '</em></div><span class="shopp-quantity">'
 							+ itemamount
-							+ '</span><img src="/resources/images/remove.png" class="remove"/><br class="all" /></div>');
+							+ '</span><img src="../../resources/images/remove.png" class="remove"/><br class="all" /></div>');
 	$('#each-' + thisID).children(
 			".shopp-quantity").html(
 			parseInt(itemamount));
